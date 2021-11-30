@@ -2,11 +2,15 @@
   "name": "bingo-activity",
   "version": "0.1.0",
   "private": true,
+  "stylelint": {
+    "extends": "stylelint-config-standard"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lintjs": "./node_modules/.bin/eslint . --fix"
+    "lintjs": "./node_modules/.bin/eslint . --fix",
+    "lintcss": "./node_modules/.bin/stylelint '**/*.css' --fix"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -24,7 +28,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.1",
     "eslint-plugin-vue": "^8.1.1",
-    "glob-parent": "^5.1.2"
+    "glob-parent": "^5.1.2",
+    "stylelint": "^14.1.0",
+    "stylelint-config-standard": "^24.0.0"
   },
   "eslintConfig": {
     "root": true,
