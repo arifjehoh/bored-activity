@@ -1,7 +1,8 @@
 # Bingo when you are bored
 **Course code**: DH2642  
 **Project group number**: 10  
-**Group members**: Abdullah Trabulsiah [github](#), Arif Jehda-Oh [github](#), Murtadha Hussien Ali Al-Obaidi [github](#), Nils Falck [github](#)  
+**Group members**:   
+Abdullah Trabulsiah ([abdullahtr249](https://github.com/abdullahtr249)), Arif Jehda-Oh ([arifjehoh](https://github.com/arifjehoh)), Murtadha Hussien Ali Al-Obaidi ([mhaao](https://github.com/mhaao)), Nils Falck ([nilfal](https://github.com/Nilfall))  
 
 ## What is this project
 TBA
