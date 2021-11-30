@@ -1,24 +1,18 @@
-# bingo-activity
+# Bingo when you are bored
+**Course code**: DH2642  
+**Project group number**: 10  
+**Group members**: Abdullah Trabulsiah [github](#), Arif Jehda-Oh [github](#), Murtadha Hussien Ali Al-Obaidi [github](#), Nils Falck [github](#)  
 
-## Project setup
-```
-npm install
-```
+## What is this project
+TBA
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## What you have done
+TBA
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
+## What you still plan to do
+TBA
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Your project file structure
+TBA
