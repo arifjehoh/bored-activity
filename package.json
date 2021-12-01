@@ -8,9 +8,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "lintjs": "./node_modules/.bin/eslint . --fix",
-    "lintcss": "./node_modules/.bin/stylelint '**/*.css' --fix"
+    "lint": "./node_modules/.bin/lint-staged & vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
