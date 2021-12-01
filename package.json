@@ -2,10 +2,13 @@
   "name": "bingo-activity",
   "version": "0.1.0",
   "private": true,
+  "stylelint": {
+    "extends": "stylelint-config-standard"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "./node_modules/.bin/lint-staged & vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -17,9 +20,16 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0",
-    "glob-parent": "^5.1.2"
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "eslint-plugin-vue": "^8.1.1",
+    "glob-parent": "^5.1.2",
+    "lint-staged": "^12.1.2",
+    "stylelint": "^14.1.0",
+    "stylelint-config-standard": "^24.0.0"
   },
   "eslintConfig": {
     "root": true,
@@ -39,5 +49,13 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "lint-staged": {
+    "*.{js,tsx,vue}": [
+      "./node_modules/.bin/eslint --fix"
+    ],
+    "*.{css,less,sass}": [
+      "./node_modules/.bin/stylelint --fix"
+    ]
+  }
 }
