@@ -10,7 +10,7 @@ TBA
 
 ## What you have done
 TBA
-
+Vi klara med det.
 
 ## What you still plan to do
 TBA
