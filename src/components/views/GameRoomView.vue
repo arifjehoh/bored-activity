@@ -5,7 +5,7 @@
     </div>
     <div id='content'>
       <div id='gameBoard'>
-        <div v-for='activity in activities' v-bind:key='activity.name'>{{ activity.name }}</div>
+        <div v-for='activity in activities' v-bind:key='activity.key'>{{ activity.activity }}<br>{{activity.type}}</div>
       </div>
       <div id='participants'>
         <h2>Participants:</h2>
