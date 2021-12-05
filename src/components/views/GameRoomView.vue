@@ -12,9 +12,9 @@
         <div v-for='participant in participants' v-bind:key='participant.name'>
           {{ participant.name }}: {{ participant.score }}
         </div>
-        <Button type='button'>Join game room</button>
-        <Button type='button'>End game room</button>
-        <Button type='button'>Leave game room</button>
+        <button type='button'>Join game room</button>
+        <button type='button'>End game room</button>
+        <button type='button'>Leave game room</button>
       </div>
     </div>
   </div>
@@ -22,17 +22,25 @@
 </template>
 
 <script>
-import MockGameRoom from '../models/MockGameRoom.js'
 
 export default {
   name: 'GameRoom',
+  props: {
+    gameRoom: Object
+  },
   data () {
     return {
-      title: MockGameRoom.title,
-      room_status: MockGameRoom.room_status,
-      participants: MockGameRoom.participants,
-      activities: MockGameRoom.activities
+      title: 'No title',
+      room_status: 'Not started',
+      participants: [],
+      activities: []
     }
+  },
+  mounted () {
+    this.title = this.gameRoom.title
+    this.room_status = this.gameRoom.room_status
+    this.participants = this.gameRoom.participants
+    this.activities = this.gameRoom.activities
   }
 }
 </script>
