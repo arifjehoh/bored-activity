@@ -8,6 +8,7 @@
 <script>
 import GameRoom from '../views/GameRoomView.vue'
 import MockGameRoom from '../models/MockGameRoom.js'
+import GameRoomModel from '../models/GameRoomModel.js'
 
 export default {
   name: 'GameRoomPresenter',
@@ -16,7 +17,7 @@ export default {
   },
   data () {
     return {
-      gameRoom: MockGameRoom
+      gameRoom: new GameRoomModel(MockGameRoom)
     }
   }
 }
