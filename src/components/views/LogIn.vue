@@ -1,22 +1,21 @@
 <template>
-
-  <div id="content">
-    <div id="header">
+  <div id='content'>
+    <div id='header'>
       <h1>Bored Bingo</h1>
       <h2>Sign in</h2>
     </div>
 
     <div>
       <h4>Email Adress</h4>
-      <input type="email" placeholder  id= 'place'/>
+      <input type='email' placeholder id='place' />
       <h4>Password</h4>
-      <input type="password"> placeholder id= 'place' />
+      <input type='password' placeholder id='place' />
     </div>
-    <div id="profileButton">
-      <button id="btnSignin" v-on:click="SignIn">Sign in</button>
+    <div id='profileButton'>
+      <button id='btnSignin' v-on:click='SignIn'>Sign in</button>
     </div>
-    <div id="loginButton">
-      <button id="btnSignin" v-on:click="createProfile">Create Profile</button>
+    <div id='loginButton'>
+      <button id='btnSignin' v-on:click='createProfile'>Create Profile</button>
     </div>
   </div>
 </template>
@@ -24,9 +23,6 @@
 <script>
 export default {
   name: 'LogIn',
-  data () {
-  },
-  mounted () {},
   methods: {
     SignIn: function () {
       console.log('User wants to  sign in.')
@@ -70,10 +66,10 @@ export default {
   position: relative;
   top: 10px;
 }
-#btnSignin{
+#btnSignin {
   font-size: 20px;
 }
-#place{
+#place {
   font-size: 20px;
 }
 </style>
