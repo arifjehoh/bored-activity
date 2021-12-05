@@ -50,7 +50,11 @@ export default {
       console.log('User wants to end the game.')
     },
     leaveGame: function () {
-      console.log('User wants to leave the game.')
+      if (confirm('User wants to leave the game.')) {
+        console.log('User is leaving.')
+      } else {
+        console.log('User do not want to leave.')
+      }
     }
   }
 }
