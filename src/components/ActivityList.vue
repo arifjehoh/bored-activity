@@ -27,12 +27,12 @@ export default {
     data(){
         return{list:undefined}
     },
-    mounted(){
+     mounted(){
         Vue.axios.get('https://www.boredapi.com/api/activity')
-        .then((r) => {
-            this.list=r.activity;
+         .then((r) => {
+            this.list = r.activity;
             console.warn(r.activity)
         })
-    }
+     }
 }
 </script>
