@@ -47,6 +47,12 @@ export default {
       console.log('User wants to join the game.')
     },
     endGame: function () {
+      const winner = this.gameRoom.whoIsTheWinner()
+      if (winner) {
+        console.log(`There is a winner ${this.gameRoom.whoIsTheWinner().name}`)
+      } else {
+        console.log('There is no winner')
+      }
       if (confirm('User wants to end the game.')) {
         console.log('User is ending the game.')
       } else {
