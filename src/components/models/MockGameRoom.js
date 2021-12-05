@@ -3,7 +3,16 @@ const MockGameRoom = {
   room_status: 'Active',
   participants: [
     {
-      name: 'Arif'
+      name: 'Arif',
+      score: 10
+    },
+    {
+      name: 'Daniel',
+      score: 8
+    },
+    {
+      name: 'Bob',
+      score: 696969
     }
   ],
   activities: [
@@ -18,6 +27,24 @@ const MockGameRoom = {
     },
     {
       name: 'Activity 4'
+    },
+    {
+      name: 'Activity 5'
+    },
+    {
+      name: 'Activity 6'
+    },
+    {
+      name: 'Activity 7'
+    },
+    {
+      name: 'Activity 8'
+    },
+    {
+      name: 'Activity 9'
+    },
+    {
+      name: 'Activity 10'
     }
   ]
 }
