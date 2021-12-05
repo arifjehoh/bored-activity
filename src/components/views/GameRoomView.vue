@@ -12,9 +12,9 @@
         <div v-for='participant in participants' v-bind:key='participant.name'>
           {{ participant.name }}: {{ participant.score }}
         </div>
-        <button type='button'>Join game room</button>
-        <button type='button'>End game room</button>
-        <button type='button'>Leave game room</button>
+        <button type='button' v-on:click='joinGame'>Join game room</button>
+        <button type='button' v-on:click='endGame'>End game room</button>
+        <button type='button' v-on:click='leaveGame'>Leave game room</button>
       </div>
     </div>
   </div>
@@ -41,6 +41,17 @@ export default {
     this.room_status = this.gameRoom.room_status
     this.participants = this.gameRoom.participants
     this.activities = this.gameRoom.activities
+  },
+  methods: {
+    joinGame: function () {
+      console.log('User wants to join the game.')
+    },
+    endGame: function () {
+      console.log('User wants to end the game.')
+    },
+    leaveGame: function () {
+      console.log('User wants to leave the game.')
+    }
   }
 }
 </script>
