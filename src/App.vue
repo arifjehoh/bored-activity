@@ -1,5 +1,5 @@
 <template>
-  <div> 
+  <div>
     <img alt='Vue logo' src='./assets/logo.png' />
     <HelloWorld msg='Welcome to Your Vue.js App' />
     <ActivityList />
@@ -8,7 +8,7 @@
 </template>
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import Activitylist from './components/ActivityList.vue'
+import ActivityList from './components/views/ActivityList.vue'
 import LogIn from './components/views/LogIn.vue'
 import '@/style.css'
 
