@@ -4,12 +4,14 @@
     <HelloWorld msg='Welcome to Your Vue.js App' />
     <ActivityList />
     <LogIn />
+    <SignUp/>
   </div>
 </template>
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import ActivityList from './components/views/ActivityList.vue'
 import LogIn from './components/views/LogIn.vue'
+import SignUp from './components/views/SignUp.vue'
 import '@/style.css'
 
 export default {
@@ -17,7 +19,8 @@ export default {
   components: {
     HelloWorld,
     ActivityList,
-    LogIn
+    LogIn,
+    SignUp
   }
 }
 </script>
