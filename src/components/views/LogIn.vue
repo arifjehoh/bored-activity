@@ -7,9 +7,9 @@
 
     <div>
       <h4>Email Adress</h4>
-      <input type='email' placeholder id='place' />
+      <input type='email' placeholder="Enter email" v-model = "email" id='place' />
       <h4>Password</h4>
-      <input type='password' placeholder id='place' />
+      <input type='password' placeholder="Enter password" v-model = "password" id='place' />
     </div>
     <div id='profileButton'>
       <button id='btnSignin' v-on:click='SignIn'>Sign in</button>
@@ -23,9 +23,15 @@
 <script>
 export default {
   name: 'LogIn',
+  data () {
+    return {
+      email: null,
+      password: null
+    }
+  },
   methods: {
     SignIn: function () {
-      console.log('User wants to  sign in.')
+      console.log('values:', this.email, this.password)
     },
     createProfile: function () {
       console.log('User wants to go to create profile.')
