@@ -18,6 +18,9 @@ export default {
     HelloWorld,
     ActivityList,
     LogIn
+  },
+  mounted () {
+    console.log(process.env.VUE_APP_API_KEY)
   }
 }
 </script>
