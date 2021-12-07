@@ -13,11 +13,8 @@
       <h4>Password</h4>
       <input type='password' placeholder="Enter password" v-model="password" id='place' />
     </div>
-    <div id='profileButton'>
-      <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
-    </div>
     <div id='loginButton'>
-      <button id='btnSignin' v-on:click='createProfile'>Create Profile</button>
+      <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
     </div>
   </div>
 </template>
@@ -35,9 +32,6 @@ export default {
   methods: {
     SignUp: function () {
       console.log('User wants to sign up with values:', this.name, this.email, this.password)
-    },
-    createProfile: function () {
-      console.log('User wants to go to create profile.')
     }
   }
 }
