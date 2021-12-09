@@ -14,7 +14,6 @@ import '@/style.css'
 export default {
   name: 'App',
   components: {
-    // HelloWorld,
     ActivityList,
     LogIn,
     UserProfile
