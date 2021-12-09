@@ -23,7 +23,7 @@
 <script>
 import GameRoomModel from '../models/GameRoomModel.js'
 import activtiy from '../utils/ApiService.js'
-import gameRoomToFirebase from '../utils/FirebaseService.js'
+import { gameRoomToFirebase, currentUser } from '../utils/FirebaseService.js'
 
 export default {
   name: 'CreateGameRoomView',
@@ -31,7 +31,8 @@ export default {
     return {
       roomName: 'Enter room name',
       type: '',
-      room: new GameRoomModel()
+      room: new GameRoomModel(),
+      user: currentUser()
     }
   },
   methods: {
@@ -68,6 +69,7 @@ export default {
         const activities = value.map(({ data }) => data)
         this.room.setName(this.roomName)
         this.room.setActivties(activities)
+        this.room.addParticipant(this.user ? this.user : 'player1234')
         gameRoomToFirebase(this.room)
       } catch (error) {
         throw new TypeError('Could not get Activity')
