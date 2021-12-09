@@ -12,7 +12,9 @@
     "lint": "./node_modules/.bin/lint-staged & vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "core-js": "^3.6.5",
+    "firebase": "^9.6.0",
     "vue": "^3.0.0"
   },
   "devDependencies": {
