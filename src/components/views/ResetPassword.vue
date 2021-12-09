@@ -30,7 +30,12 @@ export default {
       console.log('User wants to reset password.')
       console.log(app)
       const auth = getAuth()
+      if (this.email === null) {
+        alert('Need to enter an email')
+        return 0
+      }
       sendPasswordResetEmail(auth, this.email)
+      alert('A new password is sent by email')
         .then(() => {
           // Password reset email sent!
           // ..
@@ -38,7 +43,8 @@ export default {
         .catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message
-          console.log(errorCode, errorMessage)
+          console.log(errorCode)
+          console.log(errorMessage)
           // ..
         })
     }
