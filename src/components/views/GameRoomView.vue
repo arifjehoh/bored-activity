@@ -29,7 +29,7 @@ export default {
   props: {
     gameRoom: Object
   },
-  emits: ['playerJoinGame', 'playerLeaveGame'],
+  emits: ['playerJoinGame', 'playerLeaveGame', 'playerEndGame'],
   setup () {
     // Todo fetch player with this.gameRoom.participants
   },
@@ -43,7 +43,7 @@ export default {
   },
   mounted () {
     this.title = this.gameRoom.title
-    this.room_status = this.gameRoom.room_status
+    this.room_status = this.gameRoom.roomStatus
     this.participants = this.gameRoom.participants
     this.activities = this.gameRoom.activities
   },
@@ -61,6 +61,7 @@ export default {
       }
       if (confirm('User wants to end the game.')) {
         console.log('User is ending the game.')
+        this.$emit('playerEndGame', {})
       } else {
         console.log('User do not want to end the game')
       }

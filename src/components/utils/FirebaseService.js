@@ -39,4 +39,14 @@ const leaveGame = async (roomId, player) => {
   }
 }
 
-export { getGameRoom, joinGame, leaveGame }
+const endGame = async (roomId) => {
+  try {
+    await updateDoc(doc(db, 'rooms', roomId), {
+      status: 'Done'
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export { getGameRoom, joinGame, leaveGame, endGame }
