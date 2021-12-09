@@ -13,6 +13,11 @@ class GameRoomModel {
   setActivties (activities) {
     this.activities = activities
   }
+
+  addParticipant (player) {
+    console.log(player)
+    this.participants = [...this.participants, player]
+  }
 }
 
 export default GameRoomModel
