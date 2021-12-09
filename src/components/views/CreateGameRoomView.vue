@@ -1,0 +1,118 @@
+<template>
+  <div>
+    <h1>CreateGameRoomView</h1>
+    <label for='roomName'>Game room name:</label>
+    <input type='text' id='roomName' name='roomName' v-model='roomName' />
+    <label for='typeActivites'>Type of activities:</label>
+    <select id='typeActivites' name='typeActivites' v-model='type'>
+      <option value=''>Everything</option>
+      <option value='education'>Education</option>
+      <option value='recreational'>Recreational</option>
+      <option value='social'>Social</option>
+      <option value='diy'>Diy</option>
+      <option value='charity'>Charity</option>
+      <option value='cooking'>Cooking</option>
+      <option value='relaxation'>Relaxation</option>
+      <option value='music'>Music</option>
+      <option value='busywork'>Busywork</option>
+    </select>
+    <button v-on:click='createGame'>Create game room</button>
+  </div>
+</template>
+
+<script>
+import GameRoomModel from '../models/GameRoomModel.js'
+import { app } from '../utils/firebaseConfig'
+import { getFirestore, collection, addDoc } from 'firebase/firestore'
+import axios from 'axios'
+
+const firestore = getFirestore(app)
+
+export const pushGameRoomToFirebase = async (room) => {
+  try {
+    const docRef = await addDoc(collection(firestore, 'rooms'), {
+      title: room.title,
+      status: room.roomStatus,
+      participants: room.participants,
+      activities: room.activities
+    })
+    console.log('Document written with ID: ', docRef.id)
+  } catch (e) {
+    console.error('Error adding document: ', e)
+  }
+}
+
+function apiCall (param) {
+  return axios
+    .get(`https://www.boredapi.com/api/activity${param}`)
+    .then((response) => {
+      if (response.statusText !== 'OK') {
+        throw new TypeError('Couldnt connect to API')
+      }
+      return response
+    })
+    .catch(console.error)
+}
+
+const getActivity = async (activityType) => {
+  try {
+    return await apiCall(`?type=${activityType}`)
+  } catch (error) {
+    throw new TypeError('Could not get Activity')
+  }
+}
+
+export default {
+  name: 'CreateGameRoomView',
+  data () {
+    return {
+      roomName: 'Enter room name',
+      type: '',
+      room: new GameRoomModel()
+    }
+  },
+  methods: {
+    createGame: async function () {
+      try {
+        const promise = Promise.all([
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type),
+          getActivity(this.type)
+        ])
+        const value = await promise
+        const activities = value.map(({ data }) => data)
+        this.room.setName(this.roomName)
+        this.room.setActivties(activities)
+        pushGameRoomToFirebase(this.room)
+      } catch (error) {
+        throw new TypeError('Could not get Activity')
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+</style>
