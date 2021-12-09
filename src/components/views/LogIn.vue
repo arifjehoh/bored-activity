@@ -7,9 +7,9 @@
 
     <div>
       <h4>Email Adress</h4>
-      <input type='email' placeholder="Enter email" v-model = "email" id='place' />
+      <input type='email' placeholder='Enter email' v-model = 'email' id='place' />
       <h4>Password</h4>
-      <input type='password' placeholder="Enter password" v-model = "password" id='place' />
+      <input type='password' placeholder='Enter password' v-model = 'password' id='place' />
     </div>
     <div id='profileButton'>
       <button id='btnSignin' v-on:click='SignIn'>Sign in</button>
@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import app from '../utils/firebaseConfig.js'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 export default {
   name: 'LogIn',
   data () {
@@ -31,7 +33,24 @@ export default {
   },
   methods: {
     SignIn: function () {
-      console.log('values:', this.email, this.password)
+      console.log(app)
+      const auth = getAuth()
+      signInWithEmailAndPassword(auth, this.email, this.password)
+        .then((userCredential) => {
+          const user = userCredential.user
+          console.log(user.email)
+          alert('Welcome')
+        })
+        .catch((error) => {
+          const errorCode = error.code
+          const errorMessage = error.message
+          if (errorCode === 'auth/invalid-email') {
+            alert('Email does not exist')
+          } if (errorCode === 'auth/wrong-password') {
+            alert('Password is wrong')
+          }
+          console.log(errorMessage)
+        })
     },
     createProfile: function () {
       console.log('User wants to go to create profile.')
