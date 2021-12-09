@@ -2,58 +2,58 @@
   <div id='content'>
     <div id='header'>
       <h1>Bored Bingo</h1>
-      <h2>Sign in</h2>
+      <h2>Sign up</h2>
     </div>
 
     <div>
+        <h4>Full Name</h4>
+      <input type='text' placeholder="Enter name" v-model="name" id='place' />
       <h4>Email Adress</h4>
-      <input type='email' placeholder='Enter email' v-model = 'email' id='place' />
+      <input type='email' placeholder="Enter email" v-model="email" id='place' />
       <h4>Password</h4>
-      <input type='password' placeholder='Enter password' v-model = 'password' id='place' />
-    </div>
-    <div id='profileButton'>
-      <button id='btnSignin' v-on:click='SignIn'>Sign in</button>
+      <input type='password' placeholder="Enter password" v-model="password" id='place' />
     </div>
     <div id='loginButton'>
-      <button id='btnSignin' v-on:click='createProfile'>Create Profile</button>
+      <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
     </div>
   </div>
 </template>
 
 <script>
-import app from '../utils/firebaseConfig.js'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { app } from '../utils/firebaseConfig'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 export default {
-  name: 'LogIn',
+  name: 'SignUp',
   data () {
     return {
+      name: null,
       email: null,
       password: null
     }
   },
   methods: {
-    SignIn: function () {
-      console.log(app)
+    SignUp: function () {
+      console.log(this.email, this.password, app)
+
       const auth = getAuth()
-      signInWithEmailAndPassword(auth, this.email, this.password)
+      createUserWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
+          // Signed in
           const user = userCredential.user
-          console.log(user.email)
-          alert('Welcome')
+          console.log(user)
+          // ...
         })
         .catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message
-          if (errorCode === 'auth/invalid-email') {
-            alert('Email does not exist')
-          } if (errorCode === 'auth/wrong-password') {
-            alert('Password is wrong')
+          if (errorCode === 'auth/email-already-in-use') { alert('This email is allready being used.') }
+          if (errorCode === 'auth/weak-password') {
+            alert('password is to weak.')
+            return 0
           }
-          console.log(errorMessage)
+          console.log(errorCode, errorMessage)
+          // ..
         })
-    },
-    createProfile: function () {
-      console.log('User wants to go to create profile.')
     }
   }
 }
