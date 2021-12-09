@@ -15,25 +15,42 @@
       <button id='btnSignin' v-on:click='SignIn'>Sign in</button>
     </div>
     <div id='loginButton'>
-      <button id='btnSignin' v-on:click='createProfile'>Create Profile</button>
+      <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
     </div>
   </div>
 </template>
 
 <script>
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { app } from '../utils/firebaseConfig'
 export default {
   name: 'LogIn',
   data () {
     return {
       email: null,
-      password: null
+      password: null,
+      user: 'No user'
     }
   },
   methods: {
     SignIn: function () {
-      console.log('values:', this.email, this.password)
+      console.log(app)
+      const auth = getAuth()
+      signInWithEmailAndPassword(auth, this.email, this.password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user
+          console.log(user.email)
+          alert('Welcome')
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code
+          const errorMessage = error.message
+          console.log(errorCode, errorMessage)
+        })
     },
-    createProfile: function () {
+    SignUp: function () {
       console.log('User wants to go to create profile.')
     }
   }
