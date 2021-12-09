@@ -1,5 +1,5 @@
 import app from './firebaseConfig.js'
-import { getFirestore, getDoc, doc } from 'firebase/firestore'
+import { getFirestore, getDoc, doc, updateDoc, arrayUnion } from 'firebase/firestore'
 
 const db = getFirestore(app)
 
@@ -19,4 +19,14 @@ const getGameRoom = async () => {
   return null
 }
 
-export default getGameRoom
+const addParticipant = async (roomId, player) => {
+  try {
+    await updateDoc(doc(db, 'rooms', roomId), {
+      participants: arrayUnion(player)
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export { getGameRoom, addParticipant }

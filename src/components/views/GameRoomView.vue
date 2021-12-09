@@ -29,6 +29,7 @@ export default {
   props: {
     gameRoom: Object
   },
+  emits: ['playerJoinGame'],
   setup () {
     // Todo fetch player with this.gameRoom.participants
   },
@@ -49,6 +50,7 @@ export default {
   methods: {
     joinGame: function () {
       console.log('User wants to join the game.')
+      this.$emit('playerJoinGame', {})
     },
     endGame: function () {
       const winner = this.gameRoom.whoIsTheWinner()

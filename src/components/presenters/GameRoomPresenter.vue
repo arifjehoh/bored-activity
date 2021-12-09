@@ -1,14 +1,14 @@
 <template>
   <div>
     <h1>Game Room Presenter</h1>
-    <GameRoom :gameRoom='gameRoom' v-if='haveFetched'/>
+    <GameRoom v-if='haveFetched' :gameRoom='gameRoom' @playerJoinGame='playerJoinGame' />
   </div>
 </template>
 
 <script>
 import GameRoom from '../views/GameRoomView.vue'
 import GameRoomModel from '../models/GameRoomModel.js'
-import getGameRoom from '../utils/FirebaseService.js'
+import { getGameRoom, addParticipant } from '../utils/FirebaseService.js'
 
 export default {
   name: 'GameRoomPresenter',
@@ -30,6 +30,11 @@ export default {
       this.gameRoom.setActivities(data.activities)
       this.haveFetched = true
     }).catch(console.error)
+  },
+  methods: {
+    playerJoinGame: function () {
+      addParticipant('xXezGh7zCKNXaDvihtyr', 'arif1236') // TODO change to more dynamically variable
+    }
   }
 }
 </script>
