@@ -46,6 +46,11 @@ export default {
         .catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message
+          if (errorCode === 'auth/email-already-in-use') { alert('This email is allready being used.') }
+          if (errorCode === 'auth/weak-password') {
+            alert('password is to weak.')
+            return 0
+          }
           console.log(errorCode, errorMessage)
           // ..
         })
