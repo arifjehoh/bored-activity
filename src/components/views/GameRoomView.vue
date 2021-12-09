@@ -10,7 +10,8 @@
       <div id='participants'>
         <h2>Participants:</h2>
         <div v-for='participant in participants' v-bind:key='participant.name'>
-          {{ participant.name }}: {{ participant.score }}
+          {{ participant }}
+          <!-- TODO {{ participant }}: {{ participant.name }}: {{ participant.score }} -->
         </div>
         <button type='button' v-on:click='joinGame'>Join game room</button>
         <button type='button' v-on:click='endGame'>End game room</button>
@@ -27,6 +28,9 @@ export default {
   name: 'GameRoom',
   props: {
     gameRoom: Object
+  },
+  setup () {
+    // Todo fetch player with this.gameRoom.participants
   },
   data () {
     return {
