@@ -1,10 +1,9 @@
-
 import { app } from '../utils/firebaseConfig'
 import { getFirestore, collection, addDoc } from 'firebase/firestore'
-
-const firestore = getFirestore(app)
+import { getAuth } from 'firebase/auth'
 
 const gameRoomToFirebase = async (room) => {
+  const firestore = getFirestore(app)
   try {
     const docRef = await addDoc(collection(firestore, 'rooms'), {
       title: room.title,
@@ -17,5 +16,14 @@ const gameRoomToFirebase = async (room) => {
     console.error('Error adding document: ', e)
   }
 }
+const currentUser = () => {
+  try {
+    const auth = getAuth(app)
+    const user = auth.currentUser
+    return user.uid
+  } catch (error) {
+    console.log(error)
+  }
+}
 
-export default gameRoomToFirebase
+export { gameRoomToFirebase, currentUser }
