@@ -24,7 +24,7 @@
 import GameRoomModel from '../models/GameRoomModel.js'
 import { app } from '../utils/firebaseConfig'
 import { getFirestore, collection, addDoc } from 'firebase/firestore'
-import axios from 'axios'
+import activtiy from '../utils/ApiService.js'
 
 const firestore = getFirestore(app)
 
@@ -42,26 +42,6 @@ export const pushGameRoomToFirebase = async (room) => {
   }
 }
 
-function apiCall (param) {
-  return axios
-    .get(`https://www.boredapi.com/api/activity${param}`)
-    .then((response) => {
-      if (response.statusText !== 'OK') {
-        throw new TypeError('Couldnt connect to API')
-      }
-      return response
-    })
-    .catch(console.error)
-}
-
-const getActivity = async (activityType) => {
-  try {
-    return await apiCall(`?type=${activityType}`)
-  } catch (error) {
-    throw new TypeError('Could not get Activity')
-  }
-}
-
 export default {
   name: 'CreateGameRoomView',
   data () {
@@ -75,31 +55,31 @@ export default {
     createGame: async function () {
       try {
         const promise = Promise.all([
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type),
-          getActivity(this.type)
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type),
+          activtiy(this.type)
         ])
         const value = await promise
         const activities = value.map(({ data }) => data)
