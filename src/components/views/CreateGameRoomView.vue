@@ -22,25 +22,8 @@
 
 <script>
 import GameRoomModel from '../models/GameRoomModel.js'
-import { app } from '../utils/firebaseConfig'
-import { getFirestore, collection, addDoc } from 'firebase/firestore'
 import activtiy from '../utils/ApiService.js'
-
-const firestore = getFirestore(app)
-
-export const pushGameRoomToFirebase = async (room) => {
-  try {
-    const docRef = await addDoc(collection(firestore, 'rooms'), {
-      title: room.title,
-      status: room.roomStatus,
-      participants: room.participants,
-      activities: room.activities
-    })
-    console.log('Document written with ID: ', docRef.id)
-  } catch (e) {
-    console.error('Error adding document: ', e)
-  }
-}
+import gameRoomToFirebase from '../utils/FirebaseService.js'
 
 export default {
   name: 'CreateGameRoomView',
@@ -85,7 +68,7 @@ export default {
         const activities = value.map(({ data }) => data)
         this.room.setName(this.roomName)
         this.room.setActivties(activities)
-        pushGameRoomToFirebase(this.room)
+        gameRoomToFirebase(this.room)
       } catch (error) {
         throw new TypeError('Could not get Activity')
       }
