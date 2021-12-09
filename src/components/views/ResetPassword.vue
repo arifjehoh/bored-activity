@@ -35,16 +35,19 @@ export default {
         return 0
       }
       sendPasswordResetEmail(auth, this.email)
-      alert('A new password is sent by email')
         .then(() => {
           // Password reset email sent!
           // ..
+          alert('A new password is sent by email')
         })
         .catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message
-          console.log(errorCode)
-          console.log(errorMessage)
+          if (errorCode || errorMessage === 'auth/invalid-email') {
+            alert('Email does not exist, check spelling')
+            return 0
+          }
+
           // ..
         })
     }
