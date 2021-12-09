@@ -29,7 +29,7 @@ export default {
   props: {
     gameRoom: Object
   },
-  emits: ['playerJoinGame'],
+  emits: ['playerJoinGame', 'playerLeaveGame'],
   setup () {
     // Todo fetch player with this.gameRoom.participants
   },
@@ -68,6 +68,7 @@ export default {
     leaveGame: function () {
       if (confirm('User wants to leave the game.')) {
         console.log('User is leaving.')
+        this.$emit('playerLeaveGame', {})
       } else {
         console.log('User do not want to leave.')
       }
