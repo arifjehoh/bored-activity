@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import { app } from '../utils/firebaseConfig'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 export default {
   name: 'SignUp',
   data () {
@@ -31,7 +33,22 @@ export default {
   },
   methods: {
     SignUp: function () {
-      console.log('User wants to sign up with values:', this.name, this.email, this.password)
+      console.log(this.email, this.password, app)
+
+      const auth = getAuth()
+      createUserWithEmailAndPassword(auth, this.email, this.password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user
+          console.log(user)
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code
+          const errorMessage = error.message
+          console.log(errorCode, errorMessage)
+          // ..
+        })
     }
   }
 }
