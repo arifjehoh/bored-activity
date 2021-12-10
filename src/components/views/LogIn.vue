@@ -11,24 +11,31 @@
       <h4>Password</h4>
       <input type='password' placeholder='Enter password' v-model = 'password' id='place' />
     </div>
-    <div id='profileButton'>
+    <div id='SignIn'>
       <button id='btnSignin' v-on:click='SignIn'>Sign in</button>
     </div>
-    <div id='loginButton'>
-      <button id='btnSignin' v-on:click='createProfile'>Create Profile</button>
+    <div id='SignUp'>
+      <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
+    </div>
+    <div id='resetPassword'>
+      <button id='btnSignin' v-on:click='ResetPassword'>Reset password</button>
+    </div>
+   <div id='resetPassword'>
+      <button id='btnSignin' v-on:click='Test'>test</button>
     </div>
   </div>
 </template>
 
 <script>
-import app from '../utils/firebaseConfig.js'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { app } from '../utils/firebaseConfig'
 export default {
   name: 'LogIn',
   data () {
     return {
       email: null,
-      password: null
+      password: null,
+      user: 'No user'
     }
   },
   methods: {
@@ -37,9 +44,11 @@ export default {
       const auth = getAuth()
       signInWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
+          // Signed in
           const user = userCredential.user
           console.log(user.email)
           alert('Welcome')
+          // ...
         })
         .catch((error) => {
           const errorCode = error.code
@@ -52,8 +61,11 @@ export default {
           console.log(errorMessage)
         })
     },
-    createProfile: function () {
+    SignUp: function () {
       console.log('User wants to go to create profile.')
+    },
+    Test: function () {
+      console.log(getAuth().currentUser.email)
     }
   }
 }
