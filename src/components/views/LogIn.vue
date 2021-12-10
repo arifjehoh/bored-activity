@@ -11,11 +11,17 @@
       <h4>Password</h4>
       <input type='password' placeholder="Enter password" v-model = "password" id='place' />
     </div>
-    <div id='profileButton'>
+    <div id='SignIn'>
       <button id='btnSignin' v-on:click='SignIn'>Sign in</button>
     </div>
-    <div id='loginButton'>
+    <div id='SignUp'>
       <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
+    </div>
+    <div id='resetPassword'>
+      <button id='btnSignin' v-on:click='ResetPassword'>Reset password</button>
+    </div>
+   <div id='resetPassword'>
+      <button id='btnSignin' v-on:click='Test'>test</button>
     </div>
   </div>
 </template>
@@ -47,11 +53,19 @@ export default {
         .catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message
-          console.log(errorCode, errorMessage)
+          if (errorCode === 'auth/invalid-email') {
+            alert('Email does not exist')
+          } if (errorCode === 'auth/wrong-password') {
+            alert('Password is wrong')
+          }
+          console.log(errorMessage)
         })
     },
     SignUp: function () {
       console.log('User wants to go to create profile.')
+    },
+    Test: function () {
+      console.log(getAuth().currentUser.email)
     }
   }
 }
