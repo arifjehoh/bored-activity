@@ -7,9 +7,9 @@
 
     <div>
       <h4>Email Adress</h4>
-      <input type='email' placeholder="Enter email" v-model = "email" id='place' />
+      <input type='email' placeholder='Enter email' v-model = 'email' id='place' />
       <h4>Password</h4>
-      <input type='password' placeholder="Enter password" v-model = "password" id='place' />
+      <input type='password' placeholder='Enter password' v-model = 'password' id='place' />
     </div>
     <div id='SignIn'>
       <button id='btnSignin' v-on:click='SignIn'>Sign in</button>
