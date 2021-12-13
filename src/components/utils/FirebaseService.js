@@ -5,7 +5,7 @@ const db = getFirestore(app)
 
 const getGameRoom = async () => {
   try {
-    const querySnapshot = await getDoc(doc(db, 'rooms', 'xXezGh7zCKNXaDvihtyr'))
+    const querySnapshot = await getDoc(doc(db, 'rooms', 'LpaNnbRc28U9ZX6XQZml'))
     console.log(querySnapshot.data())
     return querySnapshot.data()
   } catch (error) {
@@ -49,4 +49,14 @@ const endGame = async (roomId) => {
   }
 }
 
-export { getGameRoom, joinGame, leaveGame, endGame }
+const completeTask = async (roomId, activities) => {
+  try {
+    await updateDoc(doc(db, 'rooms', roomId), {
+      activities: activities
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export { getGameRoom, joinGame, leaveGame, endGame, completeTask }
