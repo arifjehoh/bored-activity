@@ -1,7 +1,7 @@
 class GameRoomModel {
   constructor () {
     this.title = ''
-    this.roomStatus = 'Not Started'
+    this.roomStatus = 'Playing'
     this.participants = []
     this.activities = []
   }
