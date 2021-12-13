@@ -1,12 +1,13 @@
 import app from './firebaseConfig.js'
-import { getFirestore, getDoc, doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore'
+import { getFirestore, getDoc, doc, updateDoc, arrayUnion, arrayRemove, collection, addDoc } from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
 
 const db = getFirestore(app)
+const auth = getAuth(app)
 
 const getGameRoom = async () => {
   try {
     const querySnapshot = await getDoc(doc(db, 'rooms', 'LpaNnbRc28U9ZX6XQZml'))
-    console.log(querySnapshot.data())
     return querySnapshot.data()
   } catch (error) {
     console.error(error)
@@ -54,4 +55,26 @@ const completeTask = async (roomId, activities) => {
   }
 }
 
-export { getGameRoom, joinGame, leaveGame, endGame, completeTask }
+const gameRoomToFirebase = async (room) => {
+  try {
+    const docRef = await addDoc(collection(db, 'rooms'), {
+      title: room.title,
+      status: room.roomStatus,
+      participants: room.participants,
+      activities: room.activities
+    })
+    console.log('Document written with ID: ', docRef.id)
+  } catch (e) {
+    console.error('Error adding document: ', e)
+  }
+}
+const currentUser = () => {
+  try {
+    const user = auth.currentUser
+    return user.uid
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export { gameRoomToFirebase, currentUser, getGameRoom, joinGame, leaveGame, endGame, completeTask }

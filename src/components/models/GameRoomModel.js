@@ -1,7 +1,7 @@
 class GameRoomModel {
   constructor () {
     this.title = ''
-    this.roomStatus = 'Not Started'
+    this.roomStatus = 'Playing'
     this.participants = []
     this.activities = []
     this.owner = ''
@@ -29,6 +29,10 @@ class GameRoomModel {
 
   changeStatus () {
     this.roomStatus = this.roomStatus === 'Playing' ? 'Done' : 'Playing'
+  }
+ 
+  addParticipant (player) {
+    this.participants = [...this.participants, player]
   }
 }
 
