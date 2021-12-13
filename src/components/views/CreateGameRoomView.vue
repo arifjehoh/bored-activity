@@ -67,7 +67,10 @@ export default {
           activtiy(this.type)
         ])
         const value = await promise
-        const activities = value.map(({ data }) => data)
+        const activities = value.map(({ data }) => {
+          data.participants = []
+          return data
+        })
         activities.participants = []
         this.room.setName(this.roomName)
         this.room.setActivties(activities)
