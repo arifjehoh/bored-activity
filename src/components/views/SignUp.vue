@@ -21,7 +21,7 @@
 
 <script>
 import { app } from '../utils/firebaseConfig'
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 export default {
   name: 'SignUp',
   data () {
@@ -38,6 +38,16 @@ export default {
       const auth = getAuth()
       createUserWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
+          updateProfile(auth.currentUser, {
+            displayName: this.name
+          }).then(() => {
+            // Profile updated!
+            // ...
+          }).catch((error) => {
+            console.log(error)
+            // An error occurred
+            // ...
+          })
           // Signed in
           const user = userCredential.user
           console.log(user)
