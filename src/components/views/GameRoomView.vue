@@ -5,7 +5,7 @@
     </div>
     <div id='content'>
       <div id='gameBoard'>
-        <div v-for='activity in activities' v-bind:key='activity.key' v-on:click='completeActivtiy(activity)'>
+        <div v-for='(activity, index) in activities' v-bind:key='activity.key' v-on:click='completeActivtiy(index)'>
           {{ activity.activity }}<br>{{activity.type}}<br>{{ activity.participants }}
         </div>
       </div>
@@ -15,9 +15,9 @@
           {{ participant }}
           <!-- TODO {{ participant }}: {{ participant.name }}: {{ participant.score }} -->
         </div>
-        <button type='button' v-on:click='joinGame'>Join game room</button>
-        <button type='button' v-on:click='endGame'>End game room</button>
-        <button type='button' v-on:click='leaveGame'>Leave game room</button>
+        <button type='button' v-if='!haveJoined' v-on:click='joinGame'>Join game room</button>
+        <button type='button' v-if='isOwner' v-on:click='endGame'>End game room</button>
+        <button type='button' v-if='haveJoined' v-on:click='leaveGame'>Leave game room</button>
       </div>
     </div>
   </div>
@@ -40,14 +40,18 @@ export default {
       title: 'No title',
       room_status: 'Not started',
       participants: [],
-      activities: []
+      activities: [],
+      isOwner: false,
+      haveJoined: false
     }
   },
-  mounted () {
+  beforeMount () {
     this.title = this.gameRoom.title
     this.room_status = this.gameRoom.roomStatus
     this.participants = this.gameRoom.participants
-    this.activities = this.gameRoom.activities
+    this.activities = this.gameRoom.activities.entries
+    this.isOwner = this.gameRoom.owner === 'arif' // TODO change to current user
+    this.haveJoined = this.participants.find(user => user === 'arif@arif.com') // TODO get current user email
   },
   methods: {
     joinGame: function () {
@@ -55,12 +59,6 @@ export default {
       this.$emit('playerJoinGame', {})
     },
     endGame: function () {
-      const winner = this.gameRoom.whoIsTheWinner()
-      if (winner) {
-        console.log(`There is a winner ${this.gameRoom.whoIsTheWinner().name}`)
-      } else {
-        console.log('There is no winner')
-      }
       if (confirm('User wants to end the game.')) {
         console.log('User is ending the game.')
         this.$emit('playerEndGame', {})
@@ -76,21 +74,16 @@ export default {
         console.log('User do not want to leave.')
       }
     },
-    completeActivtiy: function (activtiy) {
-      const playerId = '1234'
-      const activtiyEntry = this.activities.find(({ key }) => key === activtiy.key)
-      if (!activtiyEntry.participants.find(id => id === playerId)) {
-        activtiy.participants.push(playerId)
-      } else {
-        activtiy.participants.pop(playerId)
+    completeActivtiy: function (index) {
+      if (!this.haveJoined) {
+        return
       }
-      this.activities.map((entry) => {
-        return entry.key === activtiy.key ? activtiy : entry
-      })
-      // const key = this.activities.findIndex(({ key }) => key === activtiy.key)
-      // console.log(this.activities[key])
-      // const list = [...this.activities[key].completed, 'arif']
-      // console.log(list)
+      const playerId = '1234' // TODO add current user
+      if (!this.activities[index].participants.find(id => id === playerId)) {
+        this.activities[index].participants.push(playerId)
+      } else {
+        this.activities[index].participants.pop(playerId)
+      }
       const entries = this.activities
       this.$emit('completeActivtiy', { entries })
     }

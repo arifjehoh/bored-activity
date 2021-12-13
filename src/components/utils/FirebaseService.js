@@ -11,11 +11,6 @@ const getGameRoom = async () => {
   } catch (error) {
     console.error(error)
   }
-  /*
-  querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => ${doc.data()}`)
-  })
-  */
   return null
 }
 
@@ -39,10 +34,10 @@ const leaveGame = async (roomId, player) => {
   }
 }
 
-const endGame = async (roomId) => {
+const endGame = async (roomId, status) => {
   try {
     await updateDoc(doc(db, 'rooms', roomId), {
-      status: 'Done'
+      status: status
     })
   } catch (error) {
     console.error(error)
