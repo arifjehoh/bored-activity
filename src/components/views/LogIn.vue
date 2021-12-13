@@ -66,6 +66,7 @@ export default {
     },
     Test: function () {
       console.log(getAuth().currentUser.email)
+      console.log(getAuth().currentUser.displayName)
     }
   }
 }
