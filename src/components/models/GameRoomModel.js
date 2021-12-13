@@ -4,6 +4,7 @@ class GameRoomModel {
     this.roomStatus = 'Not Started'
     this.participants = []
     this.activities = []
+    this.owner = ''
   }
 
   setTitle (title) {
@@ -22,11 +23,12 @@ class GameRoomModel {
     this.activities = activities
   }
 
-  whoIsTheWinner () {
-    this.participants.sort(function (a, b) {
-      return b.score - a.score
-    })
-    return this.participants[0]
+  setOwner (player) {
+    this.owner = player
+  }
+
+  changeStatus () {
+    this.roomStatus = this.roomStatus === 'Playing' ? 'Done' : 'Playing'
   }
 }
 
