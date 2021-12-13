@@ -1,14 +1,14 @@
 <template>
   <div>
     <h1>Game Room Presenter</h1>
-    <GameRoom v-if='haveFetched' :gameRoom='gameRoom' @playerJoinGame='playerJoinGame' @playerLeaveGame='playerLeaveGame' @playerEndGame='playerEndGame' />
+    <GameRoom v-if='haveFetched' :gameRoom='gameRoom' @playerJoinGame='playerJoinGame' @playerLeaveGame='playerLeaveGame' @playerEndGame='playerEndGame' @completeActivtiy='completeActivtiy'/>
   </div>
 </template>
 
 <script>
 import GameRoom from '../views/GameRoomView.vue'
 import GameRoomModel from '../models/GameRoomModel.js'
-import { getGameRoom, joinGame, leaveGame, endGame } from '../utils/FirebaseService.js'
+import { getGameRoom, joinGame, leaveGame, endGame, completeTask } from '../utils/FirebaseService.js'
 
 export default {
   name: 'GameRoomPresenter',
@@ -33,13 +33,17 @@ export default {
   },
   methods: {
     playerJoinGame: function () {
-      joinGame('xXezGh7zCKNXaDvihtyr', 'arif1236') // TODO change to more dynamically variable
+      joinGame('LpaNnbRc28U9ZX6XQZml', 'arif1236') // TODO change to more dynamically variable
     },
     playerLeaveGame: function () {
-      leaveGame('xXezGh7zCKNXaDvihtyr', 'arif1236') // TODO change to more dynamically variable
+      leaveGame('LpaNnbRc28U9ZX6XQZml', 'arif1236') // TODO change to more dynamically variable
     },
     playerEndGame: function () {
-      endGame('xXezGh7zCKNXaDvihtyr') // TODO change to more dynamically variable
+      endGame('LpaNnbRc28U9ZX6XQZml') // TODO change to more dynamically variable
+    },
+    completeActivtiy: function (activities) {
+      console.log('Hello world')
+      completeTask('LpaNnbRc28U9ZX6XQZml', activities) // TODO change to more dynamically variable
     }
   }
 }

@@ -5,7 +5,9 @@
     </div>
     <div id='content'>
       <div id='gameBoard'>
-        <div v-for='activity in activities' v-bind:key='activity.key'>{{ activity.activity }}<br>{{activity.type}}</div>
+        <div v-for='activity in activities' v-bind:key='activity.key' v-on:click='completeActivtiy(activity)'>
+          {{ activity.activity }}<br>{{activity.type}}<br>{{ activity.participants }}
+        </div>
       </div>
       <div id='participants'>
         <h2>Participants:</h2>
@@ -29,7 +31,7 @@ export default {
   props: {
     gameRoom: Object
   },
-  emits: ['playerJoinGame', 'playerLeaveGame', 'playerEndGame'],
+  emits: ['playerJoinGame', 'playerLeaveGame', 'playerEndGame', 'completeActivtiy'],
   setup () {
     // Todo fetch player with this.gameRoom.participants
   },
@@ -73,6 +75,24 @@ export default {
       } else {
         console.log('User do not want to leave.')
       }
+    },
+    completeActivtiy: function (activtiy) {
+      const playerId = '1234'
+      const activtiyEntry = this.activities.find(({ key }) => key === activtiy.key)
+      if (!activtiyEntry.participants.find(id => id === playerId)) {
+        activtiy.participants.push(playerId)
+      } else {
+        activtiy.participants.pop(playerId)
+      }
+      this.activities.map((entry) => {
+        return entry.key === activtiy.key ? activtiy : entry
+      })
+      // const key = this.activities.findIndex(({ key }) => key === activtiy.key)
+      // console.log(this.activities[key])
+      // const list = [...this.activities[key].completed, 'arif']
+      // console.log(list)
+      const entries = this.activities
+      this.$emit('completeActivtiy', { entries })
     }
   }
 }
