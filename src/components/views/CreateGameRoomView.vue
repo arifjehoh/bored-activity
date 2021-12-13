@@ -68,6 +68,7 @@ export default {
         ])
         const value = await promise
         const activities = value.map(({ data }) => data)
+        activities.participants = []
         this.room.setName(this.roomName)
         this.room.setActivties(activities)
         this.room.addParticipant(getAuth().currentUser.email)
