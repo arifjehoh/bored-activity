@@ -9,7 +9,8 @@ const gameRoomToFirebase = async (room) => {
       title: room.title,
       status: room.roomStatus,
       participants: room.participants,
-      activities: room.activities
+      activities: room.activities,
+      owner: room.owner
     })
     console.log('Document written with ID: ', docRef.id)
   } catch (e) {
@@ -20,7 +21,7 @@ const currentUser = () => {
   try {
     const auth = getAuth(app)
     const user = auth.currentUser
-    return user.uid
+    return user
   } catch (error) {
     console.log(error)
   }

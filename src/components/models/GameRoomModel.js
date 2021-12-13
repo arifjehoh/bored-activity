@@ -4,6 +4,7 @@ class GameRoomModel {
     this.roomStatus = 'Playing'
     this.participants = []
     this.activities = []
+    this.owner = ''
   }
 
   setName (title) {
@@ -15,8 +16,11 @@ class GameRoomModel {
   }
 
   addParticipant (player) {
-    console.log(player)
     this.participants = [...this.participants, player]
+  }
+
+  setOwner (player) {
+    this.owner = player
   }
 }
 
