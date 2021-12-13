@@ -1,10 +1,7 @@
 <template>
   <div>
-<<<<<<< Updated upstream
-=======
     <NaviationMenu />
     <router-view />
->>>>>>> Stashed changes
     <ActivityList />
     <LogIn />
     <SignUp/>
@@ -24,12 +21,8 @@ export default {
     ActivityList,
     LogIn,
     SignUp,
-<<<<<<< Updated upstream
-    UserProfile
-=======
     UserProfile,
     NavigationMenu
->>>>>>> Stashed changes
   }
 }
 </script>
