@@ -8,9 +8,12 @@ const auth = getAuth(app)
 const getGameList = async () => {
   try {
     const docs = await getDocs(query(collection(db, 'rooms'), where('status', '!=', 'Done')))
-    let activities = []
+    const activities = []
     docs.forEach((doc) => {
-      activities = [...activities, doc.data()]
+      activities.push({
+        content: doc.data(),
+        id: doc.id
+      })
     })
     return activities
   } catch (error) {

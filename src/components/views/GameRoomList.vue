@@ -8,9 +8,9 @@
           <th>Game status</th>
           <th></th>
         </tr>
-        <tr v-for='room in rooms' v-bind:key='room.title'>
-          <td>{{ room.title }}</td>
-          <td>{{ room.status }}</td>
+        <tr v-for='(room, index) in rooms' v-bind:key='room.id' v-on:click='enterGameRoom(index)'>
+          <td>{{ room.content.title }}</td>
+          <td>{{ room.content.status }}</td>
           <td>Enter</td>
         </tr>
       </table>
@@ -32,6 +32,11 @@ export default {
     getGameList().then((data) => {
       this.rooms = data
     }).catch(console.error)
+  },
+  methods: {
+    enterGameRoom: function (index) {
+      console.log(this.rooms[index].id) // TODO SEND THIS TO SHOW GAME ROOM
+    }
   }
 }
 </script>
