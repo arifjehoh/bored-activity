@@ -4,6 +4,7 @@
     <LogIn />
     <SignUp/>
     <UserProfile/>
+    <GameRoomList/>
     <CreateGameRoomPresenter />
   </div>
 </template>
@@ -13,6 +14,7 @@ import LogIn from './components/views/LogIn.vue'
 import SignUp from './components/views/SignUp.vue'
 import UserProfile from './components/views/UserProfile.vue'
 import CreateGameRoomPresenter from './components/presenters/CreateGameRoomPresenter.vue'
+import GameRoomList from './components/views/GameRoomList.vue'
 import '@/style.css'
 
 export default {
@@ -22,7 +24,8 @@ export default {
     LogIn,
     SignUp,
     UserProfile,
-    CreateGameRoomPresenter
+    CreateGameRoomPresenter,
+    GameRoomList
   }
 }
 </script>

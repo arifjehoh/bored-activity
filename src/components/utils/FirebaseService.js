@@ -1,11 +1,29 @@
-import { app } from '../utils/firebaseConfig'
-import { getFirestore, collection, addDoc } from 'firebase/firestore'
+import app from './firebaseConfig'
+import { getFirestore, getDocs, query, collection, where, addDoc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 
-const gameRoomToFirebase = async (room) => {
-  const firestore = getFirestore(app)
+const db = getFirestore(app)
+const auth = getAuth(app)
+
+const getGameList = async () => {
   try {
-    const docRef = await addDoc(collection(firestore, 'rooms'), {
+    const docs = await getDocs(query(collection(db, 'rooms'), where('status', '!=', 'Done')))
+    const activities = []
+    docs.forEach((doc) => {
+      activities.push({
+        content: doc.data(),
+        id: doc.id
+      })
+    })
+    return activities
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const gameRoomToFirebase = async (room) => {
+  try {
+    const docRef = await addDoc(collection(db, 'rooms'), {
       title: room.title,
       status: room.roomStatus,
       participants: room.participants,
@@ -16,14 +34,13 @@ const gameRoomToFirebase = async (room) => {
     console.error('Error adding document: ', e)
   }
 }
+
 const currentUser = () => {
   try {
-    const auth = getAuth(app)
     const user = auth.currentUser
     return user.uid
   } catch (error) {
     console.log(error)
   }
 }
-
-export { gameRoomToFirebase, currentUser }
+export { gameRoomToFirebase, currentUser, getGameList }
