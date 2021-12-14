@@ -71,7 +71,11 @@ export default {
   top: 10px;
 }
 #btnSignin {
-  font-size: 20px;
+  font-size: 25px;
+  padding: 5px;
+  margin-top: 50px;
+  border-radius: 3px;
+  width: 150px;
 }
 #place {
   font-size: 20px;
