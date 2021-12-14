@@ -1,9 +1,25 @@
 import app from './firebaseConfig.js'
-import { getFirestore, getDoc, doc, updateDoc, arrayUnion, arrayRemove, collection, addDoc } from 'firebase/firestore'
+import { getFirestore, getDoc, getDocs, doc, updateDoc, arrayUnion, arrayRemove, collection, addDoc, query, where } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 
 const db = getFirestore(app)
 const auth = getAuth(app)
+
+const getGameList = async () => {
+  try {
+    const docs = await getDocs(query(collection(db, 'rooms'), where('status', '!=', 'Done')))
+    const activities = []
+    docs.forEach((doc) => {
+      activities.push({
+        content: doc.data(),
+        id: doc.id
+      })
+    })
+    return activities
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 const getGameRoom = async () => {
   try {
@@ -68,6 +84,7 @@ const gameRoomToFirebase = async (room) => {
     console.error('Error adding document: ', e)
   }
 }
+
 const currentUser = () => {
   try {
     const user = auth.currentUser
@@ -77,4 +94,4 @@ const currentUser = () => {
   }
 }
 
-export { gameRoomToFirebase, currentUser, getGameRoom, joinGame, leaveGame, endGame, completeTask }
+export { gameRoomToFirebase, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask }
