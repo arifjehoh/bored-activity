@@ -1,6 +1,6 @@
 import app from './firebaseConfig.js'
 import { getFirestore, getDoc, getDocs, doc, updateDoc, arrayUnion, arrayRemove, collection, addDoc, query, where } from 'firebase/firestore'
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from 'firebase/auth'
 
 const db = getFirestore(app)
 const auth = getAuth(app)
@@ -128,4 +128,14 @@ const createUserFromForm = (name, email, password) => {
     })
 }
 
-export { gameRoomToFirebase, signInFromForm, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask, createUserFromForm }
+const requestResetPassword = async (email) => {
+  return sendPasswordResetEmail(auth, email)
+    .then(() => {
+      alert('A new password is sent by email!')
+    })
+    .catch(() => {
+      alert('Need to enter an email')
+    })
+}
+
+export { gameRoomToFirebase, signInFromForm, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask, createUserFromForm, requestResetPassword }

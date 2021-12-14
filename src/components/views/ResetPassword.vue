@@ -7,7 +7,12 @@
 
     <div>
       <h4>Email Adress</h4>
-      <input type='email' placeholder="Enter email" v-model = "email" id='place' />
+      <input
+        type='email'
+        placeholder='Enter email'
+        v-model='email'
+        id='place'
+      />
     </div>
     <div id='resetPassword'>
       <button id='btnSignin' v-on:click='ResetPassword'>Reset Passwrod</button>
@@ -16,8 +21,7 @@
 </template>
 
 <script>
-import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
-import { app } from '../utils/firebaseConfig'
+import { requestResetPassword } from '../utils/FirebaseService.js'
 export default {
   name: 'ResetPassword',
   data () {
@@ -27,29 +31,9 @@ export default {
   },
   methods: {
     ResetPassword: function () {
-      console.log('User wants to reset password.')
-      console.log(app)
-      const auth = getAuth()
-      if (this.email === null) {
-        alert('Need to enter an email')
-        return 0
-      }
-      sendPasswordResetEmail(auth, this.email)
-        .then(() => {
-          // Password reset email sent!
-          // ..
-          alert('A new password is sent by email')
-        })
-        .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
-          if (errorCode || errorMessage === 'auth/invalid-email') {
-            alert('Email does not exist, check spelling')
-            return 0
-          }
-
-          // ..
-        })
+      requestResetPassword(this.email).then(() => {
+        this.email = ''
+      })
     }
   }
 }
