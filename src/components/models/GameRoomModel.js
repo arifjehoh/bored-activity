@@ -30,7 +30,7 @@ class GameRoomModel {
   changeStatus () {
     this.roomStatus = this.roomStatus === 'Playing' ? 'Done' : 'Playing'
   }
- 
+
   addParticipant (player) {
     this.participants = [...this.participants, player]
   }
