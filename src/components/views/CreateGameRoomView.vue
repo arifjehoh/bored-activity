@@ -24,7 +24,6 @@
 import GameRoomModel from '../models/GameRoomModel.js'
 import activtiy from '../utils/ApiService.js'
 import { gameRoomToFirebase, currentUser } from '../utils/FirebaseService.js'
-import { getAuth } from 'firebase/auth'
 
 export default {
   name: 'CreateGameRoomView',
@@ -74,7 +73,8 @@ export default {
         activities.participants = []
         this.room.setName(this.roomName)
         this.room.setActivties(activities)
-        this.room.addParticipant(getAuth().currentUser.email)
+        this.room.addParticipant(currentUser().email)
+        this.room.setOwner(currentUser().uid)
         gameRoomToFirebase(this.room)
       } catch (error) {
         throw new TypeError('Could not get Activity')
