@@ -10,7 +10,7 @@
       <input type='email' placeholder="Enter email" v-model = "email" id='place' />
     </div>
     <div id='resetPassword'>
-      <button id='btnSignin' v-on:click='ResetPassword'>Reset Passwrod</button>
+      <button id='btnSignin' v-on:click='ResetPassword'><router-link to="/ResetPassword">Reset password</router-link></button>
     </div>
   </div>
 </template>

@@ -1,27 +1,43 @@
 <template>
-  <div id='content'>
-    <div id='header'>
+  <div id="content">
+    <div id="header">
       <h1>Bored Bingo</h1>
       <h2>Sign in</h2>
     </div>
 
     <div>
-      <h4>Email Adress</h4>
-      <input type='email' placeholder='Enter email' v-model = 'email' id='place' />
+      <h4>Email Address</h4>
+      <input
+        type="email"
+        placeholder="Enter email"
+        v-model="email"
+        required
+        id="place"
+      />
+
       <h4>Password</h4>
-      <input type='password' placeholder='Enter password' v-model = 'password' id='place' />
+      <input
+        type="password"
+        placeholder="Enter password"
+        v-model="password"
+        required
+        id="place"
+      />
     </div>
-    <div id='SignIn'>
-      <button id='btnSignin' v-on:click='SignIn'>Sign in</button>
+
+    <div id="SignIn">
+      <button id="btnSignin" v-on:click="LogIn">Sign in</button>
     </div>
-    <div id='SignUp'>
-      <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
+    <div id="SignUp">
+      <!-- <button id='btnSignin' v-on:click='SignUp'><router-link to="/SignUp">Sign up</router-link></button> -->
     </div>
-    <div id='resetPassword'>
-      <button id='btnSignin' v-on:click='ResetPassword'>Reset password</button>
+    <div id="resetPassword">
+      <button id="btnSignin" v-on:click="ResetPassword">
+        <router-link to="/ResetPassword">Reset password</router-link>
+      </button>
     </div>
-   <div id='resetPassword'>
-      <button id='btnSignin' v-on:click='Test'>test</button>
+    <div id="resetPassword">
+      <!-- <button id='btnSignin' v-on:click='Test'>test</button> -->
     </div>
   </div>
 </template>
@@ -33,20 +49,23 @@ export default {
   name: 'LogIn',
   data () {
     return {
-      email: null,
-      password: null,
-      user: 'No user'
+      email: '',
+      password: ''
     }
   },
   methods: {
-    SignIn: function () {
+    LogIn: function () {
+      console.log('Email:' + this.email)
       console.log(app)
+
       const auth = getAuth()
       signInWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user
+          console.log(user)
           console.log(user.email)
+          this.$router.push({ name: 'UserProfile' })
           alert('Welcome')
           // ...
         })
@@ -60,13 +79,25 @@ export default {
           }
           console.log(errorMessage)
         })
-    },
-    SignUp: function () {
-      console.log('User wants to go to create profile.')
-    },
-    Test: function () {
-      console.log(getAuth().currentUser.email)
-      console.log(getAuth().currentUser.displayName)
+      // console.log(app)
+      // const auth = getAuth()
+      // signInWithEmailAndPassword(auth, this.email, this.password)
+      //   .then((userCredential) => {
+      //     // Signed in
+      //     const user = userCredential.user
+      //     console.log(user.email)
+      //     alert('Welcome')
+      //     // ...
+      //   })
+      //   .catch((error) => {
+      //     const errorCode = error.code
+      //     const errorMessage = error.message
+      //     if (errorCode === 'auth/invalid-email') {
+      //       alert('Email does not exist')
+      //     } if (errorCode === 'auth/wrong-password') {
+      //       alert('Password is wrong')
+      //     }
+      //     console.log(errorMessage)})
     }
   }
 }
