@@ -1,31 +1,31 @@
 <template>
   <div>
-    <ActivityList />
-    <LogIn />
-    <SignUp/>
-    <UserProfile/>
-    <GameRoomList/>
+    <LogInPresenter />
+    <CreateAccountPresenter/>
+    <GameRoomListPresenter/>
     <CreateGameRoomPresenter />
+    <ResetPasswordPresenter />
+    <UserProfilePresenter />
   </div>
 </template>
 <script>
-import ActivityList from './components/views/ActivityList.vue'
-import LogIn from './components/views/LogIn.vue'
-import SignUp from './components/views/SignUp.vue'
-import UserProfile from './components/views/UserProfile.vue'
+import UserProfilePresenter from './components/presenters/UserProfilePresenter.vue'
 import CreateGameRoomPresenter from './components/presenters/CreateGameRoomPresenter.vue'
-import GameRoomList from './components/views/GameRoomList.vue'
+import GameRoomListPresenter from './components/presenters/GameRoomListPresenter.vue'
+import LogInPresenter from './components/presenters/LogInPresenter.vue'
+import ResetPasswordPresenter from './components/presenters/ResetPasswordPresenter.vue'
+import CreateAccountPresenter from './components/presenters/CreateAccountPresenter.vue'
 import '@/style.css'
 
 export default {
   name: 'App',
   components: {
-    ActivityList,
-    LogIn,
-    SignUp,
-    UserProfile,
+    LogInPresenter,
+    CreateAccountPresenter,
+    UserProfilePresenter,
     CreateGameRoomPresenter,
-    GameRoomList
+    GameRoomListPresenter,
+    ResetPasswordPresenter
   }
 }
 </script>

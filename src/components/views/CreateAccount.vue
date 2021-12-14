@@ -23,7 +23,7 @@
 import { app } from '../utils/firebaseConfig'
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 export default {
-  name: 'SignUp',
+  name: 'CreateAccount',
   data () {
     return {
       name: null,
