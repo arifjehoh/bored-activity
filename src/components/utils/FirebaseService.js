@@ -1,6 +1,6 @@
 import app from './firebaseConfig.js'
 import { getFirestore, getDoc, getDocs, doc, updateDoc, arrayUnion, arrayRemove, collection, addDoc, query, where } from 'firebase/firestore'
-import { getAuth } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
 const db = getFirestore(app)
 const auth = getAuth(app)
@@ -95,4 +95,19 @@ const currentUser = () => {
   }
 }
 
-export { gameRoomToFirebase, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask }
+const signInFromForm = (email, password) => {
+  return signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user
+      return user
+    })
+    .catch((error) => {
+      if (error.code === 'auth/invalid-email') {
+        alert('Email does not exist')
+      } if (error.code === 'auth/wrong-password') {
+        alert('Password is wrong')
+      }
+    })
+}
+
+export { gameRoomToFirebase, signInFromForm, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask }
