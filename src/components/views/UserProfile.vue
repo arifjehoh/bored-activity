@@ -12,9 +12,7 @@
 </template>
 
 <script>
-import app from '../utils/firebaseConfig.js'
-import { getAuth, signOut } from 'firebase/auth'
-const auth = getAuth(app)
+import { signOutUser } from '../utils/FirebaseService.js'
 
 export default {
   name: 'UserProfile',
@@ -26,13 +24,7 @@ export default {
   },
   methods: {
     LogOut: function () {
-      console.log('User wants to  sign out.')
-      signOut(auth)
-        .then(() => {
-          console.log('User is logged out')
-          console.log('TODO Navigate to front page')
-        })
-        .catch((error) => console.error(error))
+      signOutUser()
     }
   }
 }
