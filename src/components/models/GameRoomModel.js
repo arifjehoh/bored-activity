@@ -34,6 +34,10 @@ class GameRoomModel {
   addParticipant (player) {
     this.participants = [...this.participants, player]
   }
+
+  setOwner (player) {
+    this.owner = player
+  }
 }
 
 export default GameRoomModel
