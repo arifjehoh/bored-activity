@@ -1,6 +1,6 @@
 import app from './firebaseConfig.js'
 import { getFirestore, getDoc, getDocs, doc, updateDoc, arrayUnion, arrayRemove, collection, addDoc, query, where } from 'firebase/firestore'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 
 const db = getFirestore(app)
 const auth = getAuth(app)
@@ -110,4 +110,22 @@ const signInFromForm = (email, password) => {
     })
 }
 
-export { gameRoomToFirebase, signInFromForm, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask }
+const createUserFromForm = (name, email, password) => {
+  return createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      updateProfile(userCredential.user, {
+        displayName: name
+      }).catch((console.error))
+      return userCredential.user
+    })
+    .catch((error) => {
+      if (error.code === 'auth/email-already-in-use') {
+        alert('this email is already being used.')
+      }
+      if (error.code === 'auth/weak-password') {
+        alert('password is to weak.')
+      }
+    })
+}
+
+export { gameRoomToFirebase, signInFromForm, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask, createUserFromForm }

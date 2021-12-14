@@ -20,8 +20,7 @@
 </template>
 
 <script>
-import app from '../utils/firebaseConfig'
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { createUserFromForm } from '../utils/FirebaseService.js'
 export default {
   name: 'SignUp',
   data () {
@@ -33,37 +32,7 @@ export default {
   },
   methods: {
     SignUp: function () {
-      console.log(this.email, this.password, app)
-
-      const auth = getAuth()
-      createUserWithEmailAndPassword(auth, this.email, this.password)
-        .then((userCredential) => {
-          updateProfile(auth.currentUser, {
-            displayName: this.name
-          }).then(() => {
-            // Profile updated!
-            // ...
-          }).catch((error) => {
-            console.log(error)
-            // An error occurred
-            // ...
-          })
-          // Signed in
-          const user = userCredential.user
-          console.log(user)
-          // ...
-        })
-        .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
-          if (errorCode === 'auth/email-already-in-use') { alert('This email is allready being used.') }
-          if (errorCode === 'auth/weak-password') {
-            alert('password is to weak.')
-            return 0
-          }
-          console.log(errorCode, errorMessage)
-          // ..
-        })
+      createUserFromForm(this.name, this.email, this.password).then((user) => console.log(user)).catch(console.error)
     }
   }
 }
