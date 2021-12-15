@@ -29,64 +29,19 @@
 </template>
 
 <script>
-import GameRoomModel from '../models/GameRoomModel.js'
-import activtiy from '../utils/ApiService.js'
-import { gameRoomToFirebase, currentUser } from '../utils/FirebaseService.js'
 
 export default {
   name: 'CreateGameRoomView',
+  emits: ['createGameRoom'],
   data () {
     return {
       roomName: '',
-      type: '',
-      room: new GameRoomModel(),
-      user: currentUser()
+      type: ''
     }
   },
   methods: {
     createGame: async function () {
-      try {
-        const promise = Promise.all([
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type),
-          activtiy(this.type)
-        ])
-        const value = await promise
-        const activities = value.map(({ data }) => {
-          data.participants = []
-          return data
-        })
-        activities.participants = []
-        this.room.setTitle(this.roomName)
-        this.room.setActivities(activities)
-        this.room.addParticipant(currentUser().email)
-        this.room.setOwner(currentUser().uid)
-        gameRoomToFirebase(this.room)
-      } catch (error) {
-        throw new TypeError(error)
-      }
+      this.$emit('createGameRoom', this.roomName, this.type)
     }
   }
 }

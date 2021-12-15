@@ -81,12 +81,13 @@ const gameRoomToFirebase = async (room) => {
       owner: room.owner
     })
     console.log('Document written with ID: ', docRef.id)
+    return docRef.id
   } catch (e) {
     console.error('Error adding document: ', e)
   }
 }
 
-const currentUser = () => {
+const currentUser = async () => {
   try {
     const user = auth.currentUser
     return user
