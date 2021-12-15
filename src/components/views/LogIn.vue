@@ -2,6 +2,10 @@
   <div id="content">
     <div id="header">
       <h1 id="pageTitle">Bored Bingo</h1>
+      <h1>{{test}}</h1>
+      <button @click ="updateTest(1)" > add points </button>
+      <button @click ="updateTest(-1)" > remove points </button>
+
       <h2>Sign in</h2>
     </div>
 
@@ -40,7 +44,6 @@
 
 <script>
 import { signInFromForm } from '../utils/FirebaseService.js'
-
 export default {
   name: 'LogIn',
   data () {
@@ -56,8 +59,12 @@ export default {
     },
     SignUp: function () {
       console.log('User wants to go to create profile.')
+    },
+    updateTest (points) {
+      this.$store.commit('updatePoints', points)
     }
   }
+
 }
 </script>
 

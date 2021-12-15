@@ -7,6 +7,8 @@
     <ResetPasswordPresenter />
     <UserProfilePresenter />
     <GameRoomPresenter />
+    <TestUp/>
+    <TestIn/>
   </div>
 </template>
 <script>
@@ -17,6 +19,8 @@ import GameRoomListPresenter from './components/presenters/GameRoomListPresenter
 import LogInPresenter from './components/presenters/LogInPresenter.vue'
 import ResetPasswordPresenter from './components/presenters/ResetPasswordPresenter.vue'
 import CreateAccountPresenter from './components/presenters/CreateAccountPresenter.vue'
+import TestUp from './components/views/TestUp.vue'
+import TestIn from './components/views/TestIn.vue'
 import '@/style.css'
 
 export default {
@@ -28,7 +32,9 @@ export default {
     CreateGameRoomPresenter,
     GameRoomPresenter,
     GameRoomListPresenter,
-    ResetPasswordPresenter
+    ResetPasswordPresenter,
+    TestUp,
+    TestIn
   }
 }
 </script>
