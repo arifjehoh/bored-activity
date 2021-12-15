@@ -1,6 +1,8 @@
 <template>
   <div>
     <router-link to="/rooms">Go to Home</router-link>
+    <router-link to="/profile">Profile</router-link>
+    <router-link to="/sign-in">Sign in</router-link>
     <router-view />
     <LogInPresenter />
     <CreateAccountPresenter/>

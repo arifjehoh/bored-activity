@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import GameRoomListPresenter from '../presenters/GameRoomListPresenter.vue'
 import GameRoomPresenter from '../presenters/GameRoomPresenter.vue'
+import UserProfilePresenter from '../presenters/UserProfilePresenter.vue'
+import LogInPresenter from '../presenters/LogInPresenter.vue'
 
 const routes = [
   {
@@ -17,6 +19,16 @@ const routes = [
     name: 'game',
     path: '/rooms/:roomId',
     component: GameRoomPresenter
+  },
+  {
+    name: 'profile',
+    path: '/profile',
+    component: UserProfilePresenter
+  },
+  {
+    name: 'sign-in',
+    path: '/sign-in',
+    component: LogInPresenter
   }
 ]
 
