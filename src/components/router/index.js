@@ -5,6 +5,7 @@ import UserProfilePresenter from '../presenters/UserProfilePresenter.vue'
 import LogInPresenter from '../presenters/LogInPresenter.vue'
 import CreateAccountPresenter from '../presenters/CreateAccountPresenter.vue'
 import ResetPasswordPresenter from '../presenters/ResetPasswordPresenter.vue'
+import CreateGameRoomPresenter from '../presenters/CreateGameRoomPresenter.vue'
 
 const routes = [
   {
@@ -21,6 +22,11 @@ const routes = [
     name: 'game',
     path: '/rooms/:roomId',
     component: GameRoomPresenter
+  },
+  {
+    name: 'create-game',
+    path: '/create-room',
+    component: CreateGameRoomPresenter
   },
   {
     name: 'profile',

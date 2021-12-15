@@ -40,7 +40,7 @@
 
 export default {
   name: 'LogIn',
-  emits: ['singIn', 'signUp', 'restPassword'],
+  emits: ['singInUser', 'signUpUser', 'restPassword'],
   data () {
     return {
       email: null,
@@ -50,10 +50,10 @@ export default {
   },
   methods: {
     SignIn: function () {
-      this.$emit('signIn', this.email, this.password)
+      this.$emit('singInUser', this.email, this.password)
     },
     SignUp: function () {
-      this.$emit('signUp')
+      this.$emit('signUpUser')
     },
     restUserPassword: function () {
       this.$emit('restPassword')

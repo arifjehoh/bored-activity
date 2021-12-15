@@ -1,6 +1,6 @@
 <template>
   <div>
-    <LogIn @signIn='singInUser' @signUp='signUpUser' @restPassword='resetUserPassword'/>
+    <LogIn @singInUser='singInUser' @signUpUser='signUpUser' @restPassword='resetUserPassword'/>
   </div>
 </template>
 
@@ -13,8 +13,8 @@ export default {
     LogIn
   },
   methods: {
-    singInUser: function () {
-      signInFromForm(this.email, this.password).then(user => this.$router.push({ name: 'home' })).catch(console.error)
+    singInUser: function (email, password) {
+      signInFromForm(email, password).then(user => this.$router.push({ name: 'home' })).catch(console.error)
     },
     signUpUser: function () {
       this.$router.push({ name: 'sign-up' })

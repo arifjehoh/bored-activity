@@ -76,9 +76,9 @@ const gameRoomToFirebase = async (room) => {
     const docRef = await addDoc(collection(db, 'rooms'), {
       title: room.title,
       status: room.roomStatus,
-      participants: room.participants,
+      participants: [auth.currentUser.displayName],
       activities: room.activities,
-      owner: room.owner
+      owner: auth.currentUser.uid
     })
     console.log('Document written with ID: ', docRef.id)
     return docRef.id
@@ -87,7 +87,7 @@ const gameRoomToFirebase = async (room) => {
   }
 }
 
-const currentUser = async () => {
+const currentUser = () => {
   try {
     const user = auth.currentUser
     return user

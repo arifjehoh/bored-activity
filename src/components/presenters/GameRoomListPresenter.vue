@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button type='button' v-on:click='goToCreateGameRoom'>Create Game Room</button>
     <GameRoomList @enterRoom='enterRoom'/>
   </div>
 </template>
@@ -15,6 +16,9 @@ export default {
     enterRoom: function (roomId) {
       console.log(roomId)
       this.$router.push({ name: 'game', params: { roomId: roomId } })
+    },
+    goToCreateGameRoom: function () {
+      this.$router.push({ name: 'create-game' })
     }
   }
 }
