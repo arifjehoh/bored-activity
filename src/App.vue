@@ -7,6 +7,7 @@
     <GameRoomList/>
     <CreateGameRoomPresenter />
     <GameRoomPresenter />
+    <InstrcutionsHelpPresenter/>
   </div>
 </template>
 <script>
@@ -17,6 +18,7 @@ import UserProfile from './components/views/UserProfile.vue'
 import CreateGameRoomPresenter from './components/presenters/CreateGameRoomPresenter.vue'
 import GameRoomPresenter from './components/presenters/GameRoomPresenter.vue'
 import GameRoomList from './components/views/GameRoomList.vue'
+import InstrcutionsHelpPresenter from './components/presenters/InstrcutionsHelpPresenter.vue'
 import '@/style.css'
 
 export default {
@@ -28,7 +30,8 @@ export default {
     UserProfile,
     CreateGameRoomPresenter,
     GameRoomPresenter,
-    GameRoomList
+    GameRoomList,
+    InstrcutionsHelpPresenter
   }
 }
 </script>
