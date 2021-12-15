@@ -25,7 +25,7 @@
       />
     </div>
     <div id='SignIn'>
-      <button id='btnSignin' v-on:click='SignIn'>Sign in</button>
+      <button id='btnSignin' v-on:click='SignIn' >Sign in</button>
     </div>
     <div id='SignUp'>
       <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
@@ -43,6 +43,7 @@ import { signInFromForm } from '../utils/FirebaseService.js'
 
 export default {
   name: 'LogIn',
+  emits: ['SignIn'],
   data () {
     return {
       email: null,

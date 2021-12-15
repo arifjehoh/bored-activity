@@ -24,12 +24,16 @@
 import { requestResetPassword } from '../utils/FirebaseService.js'
 export default {
   name: 'ResetPassword',
+  emits: ['test'],
   data () {
     return {
       email: null
     }
   },
   methods: {
+    tester: function () {
+      this.$emit('test')
+    },
     ResetPassword: function () {
       requestResetPassword(this.email).then(() => {
         this.email = ''

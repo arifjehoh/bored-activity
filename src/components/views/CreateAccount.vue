@@ -23,6 +23,7 @@
 import { createUserFromForm } from '../utils/FirebaseService.js'
 export default {
   name: 'CreateAccount',
+  emits: ['SignUp'],
   data () {
     return {
       name: null,
