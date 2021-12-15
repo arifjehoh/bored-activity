@@ -107,24 +107,24 @@ button:active {
 }
 #typeActivites{
   margin: 10px;
+  padding: 8px;
   border-radius: 8px;
   width: flex;
   font-size: 20px;
-  height: 25px;
   font-weight: bold;
 
 }
 #label{
   margin: 10px;
- font-size: 20px;
- font-weight: bold;
+  font-size: 20px;
+  font-weight: bold;
 }
 #roomName{
-margin: 10px;
+  margin: 10px;
+  padding: 8px;
   border-radius: 8px;
   width: flex;
   font-size: 20px;
-  height: 25px;
   font-weight: bold;
 }
 </style>
