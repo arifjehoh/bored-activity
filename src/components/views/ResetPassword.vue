@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import { requestResetPassword } from '../utils/FirebaseService.js'
 export default {
   name: 'ResetPassword',
+  emits: ['resetPassword'],
   data () {
     return {
       email: null
@@ -31,9 +31,7 @@ export default {
   },
   methods: {
     ResetPassword: function () {
-      requestResetPassword(this.email).then(() => {
-        this.email = ''
-      })
+      this.$emit('resetPassword', this.email)
     }
   }
 }

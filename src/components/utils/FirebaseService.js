@@ -129,12 +129,14 @@ const createUserFromForm = (name, email, password) => {
 }
 
 const requestResetPassword = async (email) => {
-  return sendPasswordResetEmail(auth, email)
-    .then(() => {
+  return await sendPasswordResetEmail(auth, email)
+    .then((data) => {
       alert('A new password is sent by email!')
+      return true
     })
     .catch(() => {
       alert('Need to enter an email')
+      return false
     })
 }
 
