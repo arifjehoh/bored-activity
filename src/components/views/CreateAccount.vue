@@ -7,11 +7,11 @@
 
     <div>
         <h4 id="textBoxTitle">Full Name</h4>
-      <input type='text' placeholder="Enter name" v-model="name" id='inputBox' />
+      <input type='text' placeholder="Enter name" v-model="name" id='InputBox' />
       <h4 id="textBoxTitle">Email Adress</h4>
-      <input type='email' placeholder="Enter email" v-model="email" id='inputBox' />
+      <input type='email' placeholder="Enter email" v-model="email" id='InputBox' />
       <h4 id="textBoxTitle">Password</h4>
-      <input type='password' placeholder="Enter password" v-model="password" id='inputBox' />
+      <input type='password' placeholder="Enter password" v-model="password" id='InputBox' />
     </div>
     <div id='SignInButton'>
       <button id='btnSignUp' v-on:click='SignUp'>Sign up</button>
@@ -104,12 +104,12 @@ export default {
 #btnSignin {
   font-size: 20px;
 }
-#inputBox {
+#InputBox {
   font-size: 25px;
   width: 350px;
   height: 50px;
   border: none;
-  border: 1px solid #555;
+  border: 3px solid #555;
   border-radius: 3px;
 }
 #textBoxTitle {
