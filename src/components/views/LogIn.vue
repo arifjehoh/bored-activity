@@ -31,18 +31,16 @@
       <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
     </div>
     <div id="resetPassword">
-      <button id="btnResetPassword" v-on:click="ResetPassword">
-        <router-link class="routerLink" to="/ResetPassword">Reset password</router-link>
-      </button>
+      <button id="btnResetPassword" v-on:click="restUserPassword">Reset password</button>
     </div>
   </div>
 </template>
 
 <script>
-import { signInFromForm } from '../utils/FirebaseService.js'
 
 export default {
   name: 'LogIn',
+  emits: ['singIn', 'signUp', 'restPassword'],
   data () {
     return {
       email: null,
@@ -52,10 +50,13 @@ export default {
   },
   methods: {
     SignIn: function () {
-      signInFromForm(this.email, this.password).then(user => console.log(user)).catch(console.error)
+      this.$emit('signIn', this.email, this.password)
     },
     SignUp: function () {
-      console.log('User wants to go to create profile.')
+      this.$emit('signUp')
+    },
+    restUserPassword: function () {
+      this.$emit('restPassword')
     }
   }
 }
