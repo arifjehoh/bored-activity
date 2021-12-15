@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>CreateGameRoomPresenter</h1>
-    <CreateGameRoomView />
+    <CreateGameRoomView @test = 'test'/>
   </div>
 </template>
 
@@ -11,6 +11,11 @@ export default {
   name: 'CreateGameRoomPresenter',
   components: {
     CreateGameRoomView
+  },
+  methods: {
+    test: function () {
+      console.log('test')
+    }
   }
 }
 </script>

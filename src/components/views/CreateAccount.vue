@@ -14,16 +14,15 @@
       <input type='password' placeholder="Enter password" v-model="password" id='place' />
     </div>
     <div id='loginButton'>
-      <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
+      <button id='btnSignin' v-on:click='tester'>Sign up</button>
     </div>
   </div>
 </template>
 
 <script>
-import app from '../utils/firebaseConfig'
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 export default {
   name: 'CreateAccount',
+  emits: ['SignUp'],
   data () {
     return {
       name: null,
@@ -32,38 +31,8 @@ export default {
     }
   },
   methods: {
-    SignUp: function () {
-      console.log(this.email, this.password, app)
-
-      const auth = getAuth()
-      createUserWithEmailAndPassword(auth, this.email, this.password)
-        .then((userCredential) => {
-          updateProfile(auth.currentUser, {
-            displayName: this.name
-          }).then(() => {
-            // Profile updated!
-            // ...
-          }).catch((error) => {
-            console.log(error)
-            // An error occurred
-            // ...
-          })
-          // Signed in
-          const user = userCredential.user
-          console.log(user)
-          // ...
-        })
-        .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
-          if (errorCode === 'auth/email-already-in-use') { alert('This email is allready being used.') }
-          if (errorCode === 'auth/weak-password') {
-            alert('password is to weak.')
-            return 0
-          }
-          console.log(errorCode, errorMessage)
-          // ..
-        })
+    tester: function () {
+      this.$emit('SignUp', this.name, this.email, this.password)
     }
   }
 }

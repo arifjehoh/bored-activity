@@ -25,7 +25,7 @@
       />
     </div>
     <div id='SignIn'>
-      <button id='btnSignin' v-on:click='SignIn'>Sign in</button>
+      <button id='btnSignin' v-on:click='LoggingIn' >Sign in</button>
     </div>
     <div id='SignUp'>
       <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
@@ -41,10 +41,10 @@
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-import app from '../utils/firebaseConfig'
+import { getAuth } from 'firebase/auth'
 export default {
   name: 'LogIn',
+  emits: ['SignIn'],
   data () {
     return {
       email: null,
@@ -53,27 +53,8 @@ export default {
     }
   },
   methods: {
-    SignIn: function () {
-      console.log(app)
-      const auth = getAuth()
-      signInWithEmailAndPassword(auth, this.email, this.password)
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user
-          console.log(user.email)
-          alert('Welcome')
-          // ...
-        })
-        .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
-          if (errorCode === 'auth/invalid-email') {
-            alert('Email does not exist')
-          } if (errorCode === 'auth/wrong-password') {
-            alert('Password is wrong')
-          }
-          console.log(errorMessage)
-        })
+    LoggingIn: function () {
+      this.$emit('SignIn', this.email, this.password)
     },
     SignUp: function () {
       console.log('User wants to go to create profile.')

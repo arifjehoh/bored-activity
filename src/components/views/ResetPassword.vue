@@ -10,7 +10,7 @@
       <input type='email' placeholder="Enter email" v-model = "email" id='place' />
     </div>
     <div id='resetPassword'>
-      <button id='btnSignin' v-on:click='ResetPassword'>Reset Passwrod</button>
+      <button id='btnSignin' v-on:click='tester'>Reset Passwrod</button>
     </div>
   </div>
 </template>
@@ -20,12 +20,16 @@ import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
 import app from '../utils/firebaseConfig'
 export default {
   name: 'ResetPassword',
+  emits: ['test'],
   data () {
     return {
       email: null
     }
   },
   methods: {
+    tester: function () {
+      this.$emit('test')
+    },
     ResetPassword: function () {
       console.log('User wants to reset password.')
       console.log(app)
