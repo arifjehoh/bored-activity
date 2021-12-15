@@ -164,5 +164,5 @@ const saveUserDetail = async (displayName, email, uid) => {
   }
 }
 
-// TODO FETCH USER DETAIL 
-export { gameRoomToFirebase, signInFromForm, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask, createUserFromForm, requestResetPassword, signOutUser, fetchProfileByUID }
+// TODO FETCH USER DETAIL
+export { gameRoomToFirebase, signInFromForm, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask, createUserFromForm, requestResetPassword, signOutUser }
