@@ -21,9 +21,9 @@ const getGameList = async () => {
   }
 }
 
-const getGameRoom = async () => {
+const getGameRoom = async (roomId) => {
   try {
-    const querySnapshot = await getDoc(doc(db, 'rooms', 'LpaNnbRc28U9ZX6XQZml'))
+    const querySnapshot = await getDoc(doc(db, 'rooms', roomId))
     return querySnapshot.data()
   } catch (error) {
     console.error(error)
