@@ -17,7 +17,7 @@
 
 <script>
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
-import { app } from '../utils/firebaseConfig'
+import app from '../utils/firebaseConfig'
 export default {
   name: 'ResetPassword',
   data () {
