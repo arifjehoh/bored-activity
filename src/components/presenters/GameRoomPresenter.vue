@@ -23,14 +23,13 @@ export default {
   },
   beforeCreate () {
     this.haveFetched = false
-    getGameRoom().then(data => {
+    getGameRoom(this.$route.params.roomId).then(data => {
       this.gameRoom.setTitle(data.title)
       this.gameRoom.setStatus(data.status)
       this.gameRoom.setParticipants(data.participants)
       this.gameRoom.setActivities(data.activities)
       this.gameRoom.setOwner(data.owner)
       this.haveFetched = true
-      console.log(this.gameRoom)
     }).catch(console.error)
   },
   methods: {
