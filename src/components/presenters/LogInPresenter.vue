@@ -16,7 +16,7 @@ export default {
     singInUser: function (email, password) {
       signInFromForm(email, password)
         .then(user => {
-          this.$store.commit('setUser', user.uid)
+          this.$store.commit('setUser', user)
           this.$router.push({ name: 'home' })
         })
         .catch(console.error)
