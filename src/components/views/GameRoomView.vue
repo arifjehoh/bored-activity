@@ -4,14 +4,19 @@
       <h1>{{ title }} - {{ room_status }}</h1>
     </div>
     <div id='content'>
+      <div id ='test'>
       <div id='gameBoard'>
-        <div v-for='(activity, index) in activities' v-bind:key='activity.key' v-on:click='completeActivtiy(index)'>
+        <div id= 'gameContent' v-for='(activity, index) in activities' v-bind:key='activity.key' v-on:click='completeActivtiy(index)'>
           {{ activity.activity }}<br>{{activity.type}}<br>{{ activity.participants }}
+          <div v-for='participant in activity.participants' v-bind:key='participant'>
+            {{ participant }}
+          </div>
         </div>
+      </div>
       </div>
       <div id='participants'>
         <h2>Participants:</h2>
-        <div v-for='participant in participants' v-bind:key='participant.name'>
+        <div id= 'players' v-for='participant in participants' v-bind:key='participant.name'>
           {{ participant }}
           <!-- TODO {{ participant }}: {{ participant.name }}: {{ participant.score }} -->
         </div>
@@ -96,6 +101,7 @@ export default {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  position: relative;
 }
 
 #content {
@@ -107,13 +113,56 @@ export default {
 #participants {
   display: flex;
   flex-direction: column;
-  text-align: left;
+  text-align: center;
+  border: groove;
+  text-size-adjust: 20%;
+  width: 25%;
+  height: flex;
 }
 
 #gameBoard {
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  grid-gap: 10px;
-  flex: 60%;
+  grid-template-columns:auto auto auto auto auto;
+  grid-gap: 15px;
+  width: 60%;
+  padding-left: 27%;
+  padding-top: 0%;
+  padding-bottom: 0%;
+  font-size: 105%;
 }
+#gameContent{
+  border: groove;
+  align-items: center;
+  size: 60px;
+}
+#test{
+  align-items: center;
+  align-content: center;
+}
+#players{
+  border: groove;
+  font-size: large;
+  margin: 5px;
+}
+button{
+  margin: 4px;
+  text-align: center;
+  align-self: center;
+  width: 98%;
+  height: 5%;
+  font-size: large;
+  border-radius: 12px;
+
+}
+button:active {
+  background-color: #d8d8d8;
+  box-shadow: 0 2px #666;
+  transform: translateY(0.5px);
+}
+#test{
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 </style>

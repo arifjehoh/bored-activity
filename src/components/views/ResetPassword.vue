@@ -15,7 +15,7 @@
       />
     </div>
     <div id='resetPassword'>
-      <button id='btnSignin' v-on:click='ResetPassword'>Reset Passwrod</button>
+      <button id='btnReset' v-on:click='ResetPassword'>Reset Password</button>
     </div>
   </div>
 </template>
@@ -50,12 +50,11 @@ export default {
   position: relative;
   bottom: 80px;
 }
-#loginButton {
-  position: relative;
-  top: 10px;
-}
-#btnSignin {
-  font-size: 20px;
+#btnReset {
+  font-size: 25px;
+  padding: 5px;
+  margin-top: 50px;
+  border-radius: 3px;
 }
 #place {
   font-size: 20px;
