@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { app } from '../utils/firebaseConfig'
+import app from '../utils/firebaseConfig'
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 export default {
   name: 'SignUp',
