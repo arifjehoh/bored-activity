@@ -1,5 +1,7 @@
 <template>
   <div>
+    <router-link to="/rooms">Go to Home</router-link>
+    <router-view />
     <LogInPresenter />
     <CreateAccountPresenter/>
     <GameRoomListPresenter/>

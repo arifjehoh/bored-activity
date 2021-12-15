@@ -1,6 +1,6 @@
 <template>
   <div>
-    <GameRoomList />
+    <GameRoomList @enterRoom='enterRoom'/>
   </div>
 </template>
 
@@ -10,6 +10,12 @@ export default {
   name: 'GameRoomListPresenter',
   components: {
     GameRoomList
+  },
+  methods: {
+    enterRoom: function (roomId) {
+      console.log(roomId)
+      this.$router.push({ name: 'game', params: { roomId: roomId } })
+    }
   }
 }
 </script>
