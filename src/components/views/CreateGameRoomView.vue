@@ -4,7 +4,7 @@
     <div>
     <label id='label' for='roomName'>Game room name:</label>
     </div>
-    <input type='text' id='roomName' name='roomName' v-model='roomName' />
+    <input type='text' id='roomName' name='roomName' v-model='roomName' placeholder="Type of activities:" />
     <div>
     <label id ='label' for='typeActivites'>Type of activities:</label>
     <div>
@@ -37,7 +37,7 @@ export default {
   name: 'CreateGameRoomView',
   data () {
     return {
-      roomName: 'Enter room name',
+      roomName: '',
       type: '',
       room: new GameRoomModel(),
       user: currentUser()
