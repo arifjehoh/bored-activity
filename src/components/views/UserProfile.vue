@@ -5,7 +5,8 @@
       <div>
         <h4>{{ userDisplayName }}</h4>
         <h5>{{ userEmail }}</h5>
-        <button id='btnLogOut' v-on:click='LogOut()'>Logout</button>
+        <button id='btnLogOut' v-on:click='signOutUser'>Logout</button>
+
       </div>
     </div>
   </div>
@@ -20,7 +21,7 @@ export default {
     userEmail: String
   },
   methods: {
-    LogOut: function () {
+    signOutUser: function () {
       this.$emit('signOut', {})
     }
   }

@@ -24,12 +24,16 @@
 export default {
   name: 'ResetPassword',
   emits: ['resetPassword'],
+
   data () {
     return {
       email: null
     }
   },
   methods: {
+    tester: function () {
+      this.$emit('test')
+    },
     ResetPassword: function () {
       this.$emit('resetPassword', this.email)
     }

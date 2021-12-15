@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
+import app from '../utils/firebaseConfig'
 import ResetPassword from '../views/ResetPassword.vue'
 import { requestResetPassword } from '../utils/FirebaseService.js'
 export default {

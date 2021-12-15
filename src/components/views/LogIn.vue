@@ -25,7 +25,7 @@
       />
     </div>
     <div id='SignIn'>
-      <button id='btnSignin' v-on:click='SignIn'>Sign in</button>
+      <button id='btnSignin' v-on:click='SignIn' >Sign in</button>
     </div>
     <div id='SignUp'>
       <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
@@ -41,6 +41,7 @@
 export default {
   name: 'LogIn',
   emits: ['singInUser', 'signUpUser', 'restPassword'],
+
   data () {
     return {
       email: null,

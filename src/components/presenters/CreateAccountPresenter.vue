@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import app from '../utils/firebaseConfig'
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import CreateAccount from '../views/CreateAccount.vue'
 import { createUserFromForm } from '../utils/FirebaseService.js'
 export default {
