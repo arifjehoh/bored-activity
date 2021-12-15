@@ -5,13 +5,14 @@
       <div>
         <h4>{{ this.name }}</h4>
         <h5>{{ this.email }}</h5>
-        <button id='btnLogOut' v-on:click='tester1'>Logout</button>
+        <button id='btnLogOut' v-on:click='LogOut'>Logout</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { signOutUser } from '../utils/FirebaseService.js'
 export default {
   name: 'UserProfile',
   emits: ['test'],
@@ -22,8 +23,8 @@ export default {
     }
   },
   methods: {
-    tester1: function () {
-      this.$emit('LogOut')
+    LogOut: function () {
+      signOutUser()
     }
   }
 }

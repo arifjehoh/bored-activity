@@ -25,7 +25,7 @@
       />
     </div>
     <div id='SignIn'>
-      <button id='btnSignin' v-on:click='LoggingIn' >Sign in</button>
+      <button id='btnSignin' v-on:click='SignIn' >Sign in</button>
     </div>
     <div id='SignUp'>
       <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
@@ -35,13 +35,12 @@
         <router-link class="routerLink" to="/ResetPassword">Reset password</router-link>
       </button>
     </div>
-    <div id="resetPassword">
-    </div>
   </div>
 </template>
 
 <script>
-import { getAuth } from 'firebase/auth'
+import { signInFromForm } from '../utils/FirebaseService.js'
+
 export default {
   name: 'LogIn',
   emits: ['SignIn'],
@@ -53,15 +52,11 @@ export default {
     }
   },
   methods: {
-    LoggingIn: function () {
-      this.$emit('SignIn', this.email, this.password)
+    SignIn: function () {
+      signInFromForm(this.email, this.password).then(user => console.log(user)).catch(console.error)
     },
     SignUp: function () {
       console.log('User wants to go to create profile.')
-    },
-    Test: function () {
-      console.log(getAuth().currentUser.email)
-      console.log(getAuth().currentUser.displayName)
     }
   }
 }
