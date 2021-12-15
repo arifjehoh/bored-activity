@@ -42,21 +42,13 @@ export default {
   },
   data () {
     return {
-      title: 'No title',
-      room_status: 'Not started',
-      participants: [],
-      activities: [],
-      isOwner: false,
-      haveJoined: false
+      title: this.gameRoom.title,
+      room_status: this.gameRoom.roomStatus,
+      participants: this.gameRoom.participants,
+      activities: this.gameRoom.activities,
+      isOwner: this.gameRoom.owner === 'arif', // TODO change to current usere,
+      haveJoined: this.gameRoom.participants.find(user => user === 'arif@arif.com') // TODO get current user email
     }
-  },
-  beforeMount () {
-    this.title = this.gameRoom.title
-    this.room_status = this.gameRoom.roomStatus
-    this.participants = this.gameRoom.participants
-    this.activities = this.gameRoom.activities.entries
-    this.isOwner = this.gameRoom.owner === 'arif' // TODO change to current user
-    this.haveJoined = this.participants.find(user => user === 'arif@arif.com') // TODO get current user email
   },
   methods: {
     joinGame: function () {

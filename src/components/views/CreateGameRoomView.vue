@@ -79,13 +79,13 @@ export default {
           return data
         })
         activities.participants = []
-        this.room.setName(this.roomName)
-        this.room.setActivties(activities)
+        this.room.setTitle(this.roomName)
+        this.room.setActivities(activities)
         this.room.addParticipant(currentUser().email)
         this.room.setOwner(currentUser().uid)
         gameRoomToFirebase(this.room)
       } catch (error) {
-        throw new TypeError('Could not get Activity')
+        throw new TypeError(error)
       }
     }
   }
