@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button type='button' v-on:click='goToCreateGameRoom'>Create Game Room</button>
+    <button type='button' v-if='this.$store.state.user' v-on:click='goToCreateGameRoom'>Create Game Room</button>
     <GameRoomList @enterRoom='enterRoom'/>
   </div>
 </template>
