@@ -6,11 +6,13 @@
     <CreateGameRoomPresenter />
     <ResetPasswordPresenter />
     <UserProfilePresenter />
+    <GameRoomPresenter />
   </div>
 </template>
 <script>
 import UserProfilePresenter from './components/presenters/UserProfilePresenter.vue'
 import CreateGameRoomPresenter from './components/presenters/CreateGameRoomPresenter.vue'
+import GameRoomPresenter from './components/presenters/GameRoomPresenter.vue'
 import GameRoomListPresenter from './components/presenters/GameRoomListPresenter.vue'
 import LogInPresenter from './components/presenters/LogInPresenter.vue'
 import ResetPasswordPresenter from './components/presenters/ResetPasswordPresenter.vue'
@@ -24,6 +26,7 @@ export default {
     CreateAccountPresenter,
     UserProfilePresenter,
     CreateGameRoomPresenter,
+    GameRoomPresenter,
     GameRoomListPresenter,
     ResetPasswordPresenter
   }
