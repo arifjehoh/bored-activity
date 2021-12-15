@@ -33,6 +33,7 @@ const getGameRoom = async (roomId) => {
 
 const joinGame = async (roomId, player) => {
   try {
+    console.log(player)
     await updateDoc(doc(db, 'rooms', roomId), {
       participants: arrayUnion(player)
     })

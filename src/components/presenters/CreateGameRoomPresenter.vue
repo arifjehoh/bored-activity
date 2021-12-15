@@ -55,6 +55,7 @@ export default {
         const room = new GameRoomModel()
         room.setTitle(title)
         room.setActivities(activities)
+        room.addParticipant(this.$store.state.user.uid)
         gameRoomToFirebase(room).then((roomId) => {
           if (roomId) {
             console.log(roomId)
