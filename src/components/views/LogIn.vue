@@ -28,7 +28,7 @@
 
 <script>
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-import { app } from '../utils/firebaseConfig'
+import app from '../utils/firebaseConfig'
 export default {
   name: 'LogIn',
   data () {
