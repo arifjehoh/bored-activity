@@ -21,6 +21,7 @@ export default {
   methods: {
     signOutUser: function () {
       signOutUser()
+      this.$store.commit('setUser', null)
       this.$router.push('/')
     }
   }

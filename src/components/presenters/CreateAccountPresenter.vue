@@ -15,7 +15,10 @@ export default {
   methods: {
     signUpUser: function (name, email, password) {
       createUserFromForm(name, email, password)
-        .then((user) => this.$router.push({ name: 'home' }))
+        .then((user) => {
+          this.$store.commit('setUser', user.uid)
+          this.$router.push({ name: 'home' })
+        })
         .catch(console.error)
     }
   }

@@ -14,7 +14,12 @@ export default {
   },
   methods: {
     singInUser: function (email, password) {
-      signInFromForm(email, password).then(user => this.$router.push({ name: 'home' })).catch(console.error)
+      signInFromForm(email, password)
+        .then(user => {
+          this.$store.commit('setUser', user.uid)
+          this.$router.push({ name: 'home' })
+        })
+        .catch(console.error)
     },
     signUpUser: function () {
       this.$router.push({ name: 'sign-up' })
