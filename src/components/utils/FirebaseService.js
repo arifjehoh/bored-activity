@@ -1,6 +1,6 @@
 import app from './firebaseConfig.js'
 import { getFirestore, getDoc, getDocs, doc, updateDoc, arrayUnion, arrayRemove, collection, addDoc, query, where } from 'firebase/firestore'
-import { getAuth } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail, signOut } from 'firebase/auth'
 
 const db = getFirestore(app)
 const auth = getAuth(app)
@@ -95,4 +95,53 @@ const currentUser = () => {
   }
 }
 
-export { gameRoomToFirebase, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask }
+const signInFromForm = (email, password) => {
+  return signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user
+      return user
+    })
+    .catch((error) => {
+      if (error.code === 'auth/invalid-email') {
+        alert('Email does not exist')
+      } if (error.code === 'auth/wrong-password') {
+        alert('Password is wrong')
+      }
+    })
+}
+
+const createUserFromForm = (name, email, password) => {
+  return createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      updateProfile(userCredential.user, {
+        displayName: name
+      }).catch((console.error))
+      return userCredential.user
+    })
+    .catch((error) => {
+      if (error.code === 'auth/email-already-in-use') {
+        alert('this email is already being used.')
+      }
+      if (error.code === 'auth/weak-password') {
+        alert('password is to weak.')
+      }
+    })
+}
+
+const requestResetPassword = async (email) => {
+  return sendPasswordResetEmail(auth, email)
+    .then(() => {
+      alert('A new password is sent by email!')
+    })
+    .catch(() => {
+      alert('Need to enter an email')
+    })
+}
+
+const signOutUser = () => {
+  signOut(auth)
+    .then(console.log)
+    .catch(console.error)
+}
+
+export { gameRoomToFirebase, signInFromForm, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask, createUserFromForm, requestResetPassword, signOutUser }
