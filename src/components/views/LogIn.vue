@@ -6,7 +6,9 @@
     </div>
 
     <div>
-      <h4 id="textBoxTitle">Email Address</h4>
+      <div id = 'labelDiv'>
+      <label >Email Address</label>
+      </div>
       <input
         type="email"
         placeholder="Enter email"
@@ -15,7 +17,9 @@
         id="InputBox"
       />
 
-      <h4 id="textBoxTitle">Password</h4>
+       <div id = 'labelDiv' >
+      <label >Password</label>
+      </div>
       <input
         type="password"
         placeholder="Enter password"
@@ -24,14 +28,16 @@
         id="InputBox"
       />
     </div>
-    <div id='SignIn'>
-      <button id='btnSignin' v-on:click='SignIn' >Sign in</button>
+    <div id = 'buttonDiv'>
+    <div >
+      <button id='SignIn' v-on:click='SignIn' >Sign in</button>
     </div>
-    <div id='SignUp'>
-      <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
+    <div>
+      <button  v-on:click='SignUp'>Sign up</button>
     </div>
-    <div id="resetPassword">
+    <div>
       <button id="btnResetPassword" v-on:click="restUserPassword">Reset password</button>
+    </div>
     </div>
   </div>
 </template>
@@ -68,64 +74,42 @@ export default {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-}
-#siteName {
-  text-align: left;
-  text-align: top;
-  position: relative;
-  bottom: 50px;
-}
-#rightMenu {
-  text-align: end;
-  text-align: top;
-  text-size-adjust: 50%;
-  position: relative;
-  bottom: 95px;
+  margin-top: 60px;
 }
 #midContent {
   text-align: center;
   position: relative;
   bottom: 80px;
 }
-#profileButton {
-  position: relative;
-  top: 10px;
-}
-#loginButton {
-  position: relative;
-  top: 10px;
-}
-#btnSignin {
+button {
   font-size: 25px;
   padding: 5px;
-  margin-top: 50px;
+  margin-top: 20px;
   border-radius: 3px;
-  width: 150px;
+  width: flex;
+  background-color: white;
+
 }
-#btnResetPassword {
-  margin-top: 10px;
-  border-radius: 3px;
-  height: 40px;
-}
-#InputBox {
+input{
   font-size: 25px;
-  width: 350px;
-  height: 50px;
+  width: flex;
+  height: flex;
   border: none;
   border: 3px solid #555;
   border-radius: 3px;
 }
-#pageTitle {
+label {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+#labelDiv{
+  margin  : 10px;
+}
+#buttonDiv{
   margin-top: 50px;
-}
-#textBoxTitle {
-  margin-bottom: 0px;
-  padding-bottom: 0px;
-  font-size: 20px;
-}
-#ResetPasswordBtnText {
-  text-decoration-line: none;
-  text-decoration-color: black;
 }
 .routerLink {
        text-decoration: none;

@@ -1,6 +1,6 @@
 <template>
   <div id='container'>
-    <div id='header'>
+    <div >
       <h1>{{ title }} - {{ room_status }}</h1>
     </div>
     <div id='content'>
@@ -9,7 +9,7 @@
         <div id= 'gameContent' v-for='(activity, index) in activities' v-bind:key='activity.key' v-on:click='complete(index)'>
           {{ activity.activity }}<br>{{activity.type}}<br>
           <div v-for='participant in activity.participants' v-bind:key='participant'>
-            {{ participant.displayName }}
+           <div id='test'> {{ participant.displayName }}</div>
           </div>
         </div>
       </div>
@@ -103,6 +103,7 @@ export default {
   flex-direction: column;
   flex-wrap: wrap;
   position: relative;
+  margin-top: 60px;
 }
 
 #content {
@@ -120,7 +121,12 @@ export default {
   width: 25%;
   height: flex;
 }
-
+#gameboard :active{
+  background: cornflowerblue;
+}
+#gameBoard :hover{
+background-color: rgb(245, 141, 67);
+}
 #gameBoard {
   display: grid;
   grid-template-columns:auto auto auto auto auto;
@@ -135,7 +141,7 @@ export default {
   border: groove;
   align-items: center;
   size: 60px;
-}
+  }
 #test{
   align-items: center;
   align-content: center;
@@ -143,10 +149,10 @@ export default {
 #players{
   border: groove;
   font-size: large;
-  margin: 5px;
+  margin  : 5px;
 }
 button{
-  margin: 4px;
+  margin  : 4px;
   text-align: center;
   align-self: center;
   width: 98%;
@@ -164,6 +170,7 @@ button:active {
   align-content: center;
   align-items: center;
   text-align: center;
+
 }
 
 </style>
