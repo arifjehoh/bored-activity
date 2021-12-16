@@ -25,30 +25,6 @@ export default {
   props: {
     rooms: Array
   },
-  // data () {
-  //   return {
-  //     rooms: []
-  //   }
-  // },
-  // beforeCreate () {
-  //   try {
-  //     const q = query(collection(db, 'rooms'), where('status', '!=', 'Done'))
-  //     const unsubscribe = onSnapshot(q, (snapshot) => {
-  //       const activities = []
-  //       snapshot.forEach((doc) => {
-  //         activities.push({
-  //           content: doc.data(),
-  //           id: doc.id
-  //         })
-  //       })
-  //       this.rooms = activities
-  //     })
-  //     console.log(unsubscribe.length)
-  //     return unsubscribe
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // },
   methods: {
     enterGameRoom: function (index) {
       console.log(this.rooms[index].id) // TODO SEND THIS TO SHOW GAME ROOM
