@@ -1,10 +1,11 @@
 import app from './firebaseConfig.js'
-import { getFirestore, getDoc, getDocs, doc, updateDoc, arrayUnion, arrayRemove, collection, addDoc, query, where } from 'firebase/firestore'
+import { getFirestore, getDoc, getDocs, doc, updateDoc, arrayUnion, arrayRemove, collection, addDoc, query, where, onSnapshot } from 'firebase/firestore'
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail, signOut } from 'firebase/auth'
 
 const db = getFirestore(app)
 const auth = getAuth(app)
 
+/*
 const getGameList = async () => {
   try {
     const docs = await getDocs(query(collection(db, 'rooms'), where('status', '!=', 'Done')))
@@ -16,6 +17,28 @@ const getGameList = async () => {
       })
     })
     return activities
+  } catch (error) {
+    console.log(error)
+  }
+}
+*/
+
+const getGameList = () => {
+  try {
+    const activities = []
+    const q = query(collection(db, 'rooms'), where('status', '!=', 'Done'))
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      snapshot.forEach((doc) => {
+        activities.push({
+          content: doc.data(),
+          id: doc.id
+        })
+      })
+      console.log(activities)
+      return activities
+    })
+    console.log(unsubscribe.length)
+    return unsubscribe
   } catch (error) {
     console.log(error)
   }
@@ -181,4 +204,4 @@ const getUserDetail = async (uid) => {
   })
 }
 
-export { gameRoomToFirebase, signInFromForm, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask, createUserFromForm, requestResetPassword, signOutUser, getParticipantDetail }
+export { db, gameRoomToFirebase, signInFromForm, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask, createUserFromForm, requestResetPassword, signOutUser, getParticipantDetail }
