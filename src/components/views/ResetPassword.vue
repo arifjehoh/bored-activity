@@ -1,21 +1,16 @@
 <template>
-  <div id='content'>
-    <div id='header'>
-      <h1>Bored Bingo</h1>
-      <h2>Reset password</h2>
-    </div>
-
-    <div>
-      <h4>Email Adress</h4>
+  <div class='card text-center container-sm'>
+    <div class='card-body'>
+      <h1 class='card-title'>Reset password</h1>
+      <span class='card-title'>Email Address</span>
       <input
         type='email'
         placeholder='Enter email'
         v-model='email'
-        id='place'
+        required
+        class='form-control'
       />
-    </div>
-    <div id='resetPassword'>
-      <button id='btnReset' v-on:click='ResetPassword'>Reset Password</button>
+      <button type='button' class='btn btn-primary' v-on:click='ResetPassword'>Reset Password</button>
     </div>
   </div>
 </template>
