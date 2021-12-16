@@ -39,8 +39,8 @@ export default {
     playerLeaveGame: function () {
       leaveGame(this.$route.params.roomId, this.$store.state.user.uid) // TODO change to more dynamically variable
     },
-    playerEndGame: function () {
-      endGame(this.$route.params.roomId, this.gameRoom.roomStatus) // TODO change to more dynamically variable
+    playerEndGame: function (roomStatus) {
+      endGame(this.$route.params.roomId, roomStatus) // TODO change to more dynamically variable
     },
     completeActivtiy: function (activities) {
       completeTask(this.$route.params.roomId, activities) // TODO change to more dynamically variable
