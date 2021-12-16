@@ -18,8 +18,7 @@
         required
         class='form-control'
       />
-      <div>
-        <!-- TODO Could be in column and not row -->
+      <div class='btn-group-vertical'>
         <button type='button' class='btn btn-primary' v-on:click='SignIn' >Sign in</button>
         <button type='button' class='btn btn-light' v-on:click='SignUp'>Sign up</button>
         <button type='button' class='btn btn-light' v-on:click='restUserPassword'>Reset password</button>
