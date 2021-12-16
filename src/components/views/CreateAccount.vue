@@ -1,20 +1,20 @@
 <template>
   <div id='content'>
     <div id='header'>
-      <h1 id="pageTitle">Bored Bingo</h1>
+      <h1 >Bored Bingo</h1>
       <h2>Sign up</h2>
     </div>
 
     <div>
-        <h4 id="textBoxTitle">Full Name</h4>
+        <div id = 'labelDiv'><label >Full Name</label></div>
       <input type='text' placeholder="Enter name" v-model="name" id='InputBox' />
-      <h4 id="textBoxTitle">Email Adress</h4>
+     <div id = 'labelDiv'> <label >Email Adress</label></div>
       <input type='email' placeholder="Enter email" v-model="email" id='InputBox' />
-      <h4 id="textBoxTitle">Password</h4>
+    <div id = 'labelDiv'>  <label >Password</label></div>
       <input type='password' placeholder="Enter password" v-model="password" id='InputBox' />
     </div>
-    <div id='SignInButton'>
-      <button id='btnSignUp' v-on:click='SignUp'>Sign up</button>
+    <div >
+      <button id='buttonDiv' v-on:click='SignUp'>Sign up</button>
     </div>
   </div>
 </template>
@@ -44,56 +44,40 @@ export default {
   flex-direction: column;
   flex-wrap: wrap;
 }
-#siteName {
-  text-align: left;
-  text-align: top;
-  position: relative;
-  bottom: 50px;
-}
-#rightMenu {
-  text-align: end;
-  text-align: top;
-  text-size-adjust: 50%;
-  position: relative;
-  bottom: 95px;
-}
 #midContent {
   text-align: center;
   position: relative;
   bottom: 80px;
 }
-#profileButton {
-  position: relative;
-  top: 10px;
-}
-#loginButton {
-  position: relative;
-  top: 10px;
-}
-#btnSignin {
-  font-size: 20px;
-}
-#InputBox {
+button {
   font-size: 25px;
-  width: 350px;
-  height: 50px;
+  padding: 5px;
+  margin-top: 20px;
+  border-radius: 3px;
+  width: flex;
+  background-color: white;
+
+}
+input{
+  font-size: 25px;
+  width: flex;
+  height: flex;
   border: none;
   border: 3px solid #555;
   border-radius: 3px;
 }
-#textBoxTitle {
-  margin-bottom: 0px;
-  padding-bottom: 0px;
-  font-size: 20px;
+label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
 }
-#pageTitle {
-  margin-top: 50px;
+#labelDiv{
+  margin  : 10px;
+  margin-bottom: 5px;
 }
-#btnSignUp {
-  font-size: 25px;
-  padding: 5px;
+#buttonDiv{
   margin-top: 50px;
-  border-radius: 3px;
-  width: 150px;
 }
 </style>

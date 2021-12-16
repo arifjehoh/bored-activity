@@ -63,14 +63,18 @@ th, td {
   border-top: 4px solid #ddd;
 }
 th{background-color: rgb(165, 162, 162);}
-button{
-  border-radius: 25px;
-  padding:10px 15px;
+button {
+  font-size: 15px;
+  padding: 5px;
+  margin-top: 20px;
+  border-radius: 3px;
+  width: flex;
   background-color: white;
+
 }
 button:active {
   background-color: rgb(165, 162, 162);;
-  box-shadow: 0 2px #666;
+  box-shadow: 0 2px rgb(28, 28, 28);
   transform: translateY(0.5px);
 }
 #room{

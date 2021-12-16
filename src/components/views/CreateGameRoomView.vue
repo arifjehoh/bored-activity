@@ -49,7 +49,7 @@ export default {
 
 <style scoped>
 button{
-  margin: 10px;
+  margin  : 10px;
 border-radius: 8px;
 width: 15%;
 height: 50px;
@@ -61,21 +61,20 @@ button:active {
   transform: translateY(0.5px);
 }
 #typeActivites{
-  margin: 10px;
+  margin  : 10px;
   padding: 8px;
   border-radius: 8px;
   width: flex;
   font-size: 20px;
   font-weight: bold;
-
 }
 #label{
-  margin: 10px;
+  margin  : 10px;
   font-size: 20px;
   font-weight: bold;
 }
 #roomName{
-  margin: 10px;
+  margin  : 10px;
   padding: 8px;
   border-radius: 8px;
   width: flex;
