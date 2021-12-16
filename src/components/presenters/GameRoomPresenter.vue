@@ -47,9 +47,11 @@ export default {
     },
     playerLeaveGame: function () {
       leaveGame(this.$route.params.roomId, { uid: this.$store.state.user.uid, displayName: this.$store.state.user.displayName }) // TODO change to more dynamically variable
+      this.$router.push({ name: 'rooms' })
     },
     playerEndGame: function (roomStatus) {
-      endGame(this.$route.params.roomId, roomStatus) // TODO change to more dynamically variable
+      endGame(this.$route.params.roomId, roomStatus)
+      this.$router.push({ name: 'rooms' })
     },
     completeActivtiy: function (activities) {
       completeTask(this.$route.params.roomId, activities) // TODO change to more dynamically variable
