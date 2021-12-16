@@ -31,20 +31,20 @@ const getGameRoom = async (roomId) => {
   return null
 }
 
-const joinGame = async (roomId, player) => {
+const joinGame = async (roomId, { uid, displayName }) => {
   try {
     await updateDoc(doc(db, 'rooms', roomId), {
-      participants: arrayUnion({ uid: player.uid, displayName: player.displayName })
+      participants: arrayUnion({ uid: uid, displayName: displayName })
     })
   } catch (error) {
     console.error(error)
   }
 }
 
-const leaveGame = async (roomId, player) => {
+const leaveGame = async (roomId, { uid, displayName }) => {
   try {
     await updateDoc(doc(db, 'rooms', roomId), {
-      participants: arrayRemove({ uid: player.uid, displayName: player.displayName })
+      participants: arrayRemove({ uid: uid, displayName: displayName })
     })
   } catch (error) {
     console.error(error)

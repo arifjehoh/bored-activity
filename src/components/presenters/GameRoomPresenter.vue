@@ -34,10 +34,10 @@ export default {
   },
   methods: {
     playerJoinGame: function () {
-      joinGame(this.$route.params.roomId, this.$store.state.user) // TODO change to more dynamically variable
+      joinGame(this.$route.params.roomId, { uid: this.$store.state.user.uid, displayName: this.$store.state.user.displayName }) // TODO change to more dynamically variable
     },
     playerLeaveGame: function () {
-      leaveGame(this.$route.params.roomId, this.$store.state.user) // TODO change to more dynamically variable
+      leaveGame(this.$route.params.roomId, { uid: this.$store.state.user.uid, displayName: this.$store.state.user.displayName }) // TODO change to more dynamically variable
     },
     playerEndGame: function (roomStatus) {
       endGame(this.$route.params.roomId, roomStatus) // TODO change to more dynamically variable

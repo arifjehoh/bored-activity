@@ -50,6 +50,7 @@ export default {
       isOwner: this.$store.state.user !== null && this.$store.state.user.uid === this.gameRoom.owner ? this.gameRoom.owner === this.$store.state.user.uid : false,
       haveJoined: this.gameRoom.participants.find(user => {
         if (this.$store.state.user !== null) {
+          console.log(user)
           return user.uid.match(this.$store.state.user.uid)
         }
         return false
