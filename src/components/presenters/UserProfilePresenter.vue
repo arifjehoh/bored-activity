@@ -1,31 +1,28 @@
 <template>
   <div>
-    <UserProfile @LogOut = 'LogOut'/>
+    <UserProfile @signOut='signOutUser' :userDisplayName='userDisplayName' :userEmail='userEmail'/>
   </div>
 </template>
 
 <script>
-import app from '../utils/firebaseConfig.js'
-import { getAuth, signOut } from 'firebase/auth'
 import UserProfile from '../views/UserProfile.vue'
-const auth = getAuth(app)
+import { signOutUser } from '../utils/FirebaseService.js'
 export default {
   name: 'UserProfilePresenter',
+  data () {
+    return {
+      userDisplayName: 'Display name from Firebase',
+      userEmail: 'Email from Firebase'
+    }
+  },
   components: {
     UserProfile
   },
   methods: {
-    test: function () {
-      console.log('test')
-    },
-    LogOut: function () {
-      console.log('User wants to  sign out.')
-      signOut(auth)
-        .then(() => {
-          console.log('User is logged out')
-          console.log('TODO Navigate to front page')
-        })
-        .catch((error) => console.error(error))
+    signOutUser: function () {
+      signOutUser()
+      this.$store.commit('setUser', null)
+      this.$router.push('/')
     }
   }
 }

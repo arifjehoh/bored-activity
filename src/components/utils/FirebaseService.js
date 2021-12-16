@@ -21,9 +21,9 @@ const getGameList = async () => {
   }
 }
 
-const getGameRoom = async () => {
+const getGameRoom = async (roomId) => {
   try {
-    const querySnapshot = await getDoc(doc(db, 'rooms', 'LpaNnbRc28U9ZX6XQZml'))
+    const querySnapshot = await getDoc(doc(db, 'rooms', roomId))
     return querySnapshot.data()
   } catch (error) {
     console.error(error)
@@ -33,6 +33,7 @@ const getGameRoom = async () => {
 
 const joinGame = async (roomId, player) => {
   try {
+    console.log(player)
     await updateDoc(doc(db, 'rooms', roomId), {
       participants: arrayUnion(player)
     })
@@ -76,11 +77,12 @@ const gameRoomToFirebase = async (room) => {
     const docRef = await addDoc(collection(db, 'rooms'), {
       title: room.title,
       status: room.roomStatus,
-      participants: room.participants,
+      participants: [auth.currentUser.displayName],
       activities: room.activities,
-      owner: room.owner
+      owner: auth.currentUser.uid
     })
     console.log('Document written with ID: ', docRef.id)
+    return docRef.id
   } catch (e) {
     console.error('Error adding document: ', e)
   }
@@ -99,6 +101,7 @@ const signInFromForm = (email, password) => {
   return signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user
+      saveUserDetail(user.displayName, user.email, user.uid)
       return user
     })
     .catch((error) => {
@@ -116,6 +119,7 @@ const createUserFromForm = (name, email, password) => {
       updateProfile(userCredential.user, {
         displayName: name
       }).catch((console.error))
+      saveUserDetail(userCredential.user.displayName, userCredential.user.email, userCredential.user.uid)
       return userCredential.user
     })
     .catch((error) => {
@@ -129,12 +133,14 @@ const createUserFromForm = (name, email, password) => {
 }
 
 const requestResetPassword = async (email) => {
-  return sendPasswordResetEmail(auth, email)
-    .then(() => {
+  return await sendPasswordResetEmail(auth, email)
+    .then((data) => {
       alert('A new password is sent by email!')
+      return true
     })
     .catch(() => {
       alert('Need to enter an email')
+      return false
     })
 }
 
@@ -144,4 +150,19 @@ const signOutUser = () => {
     .catch(console.error)
 }
 
+const saveUserDetail = async (displayName, email, uid) => {
+  try {
+    const docRef = await addDoc(collection(db, 'users'), {
+      displayName: displayName,
+      email: email,
+      uid: uid
+    })
+    console.log('Document written with ID: ', docRef.id)
+    return docRef.id
+  } catch (e) {
+    console.error('Error adding document: ', e)
+  }
+}
+
+// TODO FETCH USER DETAIL
 export { gameRoomToFirebase, signInFromForm, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask, createUserFromForm, requestResetPassword, signOutUser }

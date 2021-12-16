@@ -3,28 +3,26 @@
     <div>
       <h1>Profile</h1>
       <div>
-        <h4>{{ this.name }}</h4>
-        <h5>{{ this.email }}</h5>
-        <button id='btnLogOut' v-on:click='LogOut'>Logout</button>
+        <h4>{{ userDisplayName }}</h4>
+        <h5>{{ userEmail }}</h5>
+        <button id='btnLogOut' v-on:click='signOutUser'>Logout</button>
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { signOutUser } from '../utils/FirebaseService.js'
 export default {
   name: 'UserProfile',
-  emits: ['test'],
-  data () {
-    return {
-      name: null,
-      email: null
-    }
+  emits: ['signOut'],
+  props: {
+    userDisplayName: String,
+    userEmail: String
   },
   methods: {
-    LogOut: function () {
-      signOutUser()
+    signOutUser: function () {
+      this.$emit('signOut', {})
     }
   }
 }

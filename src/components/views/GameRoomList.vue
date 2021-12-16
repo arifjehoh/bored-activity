@@ -23,6 +23,7 @@ import { getGameList } from '../utils/FirebaseService.js'
 
 export default {
   name: 'GameRoomList',
+  emits: ['enterRoom'],
   data () {
     return {
       rooms: []
@@ -36,6 +37,7 @@ export default {
   methods: {
     enterGameRoom: function (index) {
       console.log(this.rooms[index].id) // TODO SEND THIS TO SHOW GAME ROOM
+      this.$emit('enterRoom', this.rooms[index].id)
     }
   }
 }

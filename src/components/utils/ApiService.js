@@ -13,11 +13,11 @@ function apiCall (param) {
     .catch(console.error)
 }
 
-const activity = async (activityType) => {
+const activity = (activityType) => {
   try {
-    return await apiCall(`?type=${activityType}`)
+    return apiCall(`?type=${activityType}`)
   } catch (error) {
-    throw new TypeError('Could not get Activity')
+    throw new TypeError(error)
   }
 }
 

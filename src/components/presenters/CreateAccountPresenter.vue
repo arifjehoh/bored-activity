@@ -1,55 +1,25 @@
 <template>
   <div>
-    <CreateAccount @SignUp = 'SignUp'/>
+    <CreateAccount @signUp='signUpUser' />
   </div>
 </template>
 
 <script>
-import app from '../utils/firebaseConfig'
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import CreateAccount from '../views/CreateAccount.vue'
+import { createUserFromForm } from '../utils/FirebaseService.js'
 export default {
   name: 'CreateAccountPresenter',
   components: {
     CreateAccount
   },
-
   methods: {
-    test: function () {
-      console.log('test')
-    },
-    SignUp: function (name, email, password) {
-      console.log(app)
-
-      const auth = getAuth()
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          updateProfile(auth.currentUser, {
-            displayName: name
-          }).then(() => {
-            // Profile updated!
-            // ...
-          }).catch((error) => {
-            console.log(error)
-            // An error occurred
-            // ...
-          })
-          // Signed in
-          const user = userCredential.user
-          console.log(user)
-          // ...
+    signUpUser: function (name, email, password) {
+      createUserFromForm(name, email, password)
+        .then((user) => {
+          this.$store.commit('setUser', user)
+          this.$router.push({ name: 'home' })
         })
-        .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
-          if (errorCode === 'auth/email-already-in-use') { alert('This email is allready being used.') }
-          if (errorCode === 'auth/weak-password') {
-            alert('password is to weak.')
-            return 0
-          }
-          console.log(errorCode, errorMessage)
-          // ..
-        })
+        .catch(console.error)
     }
   }
 }

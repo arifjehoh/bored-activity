@@ -1,12 +1,11 @@
 <template>
   <div>
-    <LogIn @SignIn="SignIn"/>
+    <LogIn @singInUser='singInUser' @signUpUser='signUpUser' @restPassword='resetUserPassword'/>
   </div>
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-import app from '../utils/firebaseConfig'
+import { signInFromForm } from '../utils/FirebaseService.js'
 import LogIn from '../views/LogIn.vue'
 export default {
   name: 'LogInPresenter',
@@ -14,28 +13,19 @@ export default {
     LogIn
   },
   methods: {
-    SignIn: function (email, password) {
-      console.log(app)
-      console.log(email, password)
-      const auth = getAuth()
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user
-          console.log(user.email)
-          alert('Welcome')
-          // ...
+    singInUser: function (email, password) {
+      signInFromForm(email, password)
+        .then(user => {
+          this.$store.commit('setUser', user)
+          this.$router.push({ name: 'home' })
         })
-        .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
-          if (errorCode === 'auth/invalid-email') {
-            alert('Email does not exist')
-          } if (errorCode === 'auth/wrong-password') {
-            alert('Password is wrong')
-          }
-          console.log(errorMessage)
-        })
+        .catch(console.error)
+    },
+    signUpUser: function () {
+      this.$router.push({ name: 'sign-up' })
+    },
+    resetUserPassword: function () {
+      this.$router.push({ name: 'reset-password' })
     }
   }
 }

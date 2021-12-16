@@ -16,11 +16,11 @@
       </div>
       <div id='participants'>
         <h2>Participants:</h2>
-        <div id= 'players' v-for='participant in participants' v-bind:key='participant.name'>
+        <div id='players' v-for='participant in participants' v-bind:key='participant.name'>
           {{ participant }}
-          <!-- TODO {{ participant }}: {{ participant.name }}: {{ participant.score }} -->
+           <!--TODO {{ participant }}: {{ participant.name }}: {{ participant.score }}-->
         </div>
-        <button type='button' v-if='!haveJoined' v-on:click='joinGame'>Join game room</button>
+        <button type='button' v-if='!haveJoined && this.$store.state.user' v-on:click='joinGame'>Join game room</button>
         <button type='button' v-if='isOwner' v-on:click='endGame'>End game room</button>
         <button type='button' v-if='haveJoined' v-on:click='leaveGame'>Leave game room</button>
       </div>
@@ -42,21 +42,18 @@ export default {
   },
   data () {
     return {
-      title: 'No title',
-      room_status: 'Not started',
-      participants: [],
-      activities: [],
-      isOwner: false,
-      haveJoined: false
+      title: this.gameRoom.title,
+      room_status: this.gameRoom.roomStatus,
+      participants: this.gameRoom.participants,
+      activities: this.gameRoom.activities,
+      isOwner: this.$store.state.user !== null && this.$store.state.user.uid === this.gameRoom.owner ? this.gameRoom.owner === this.$store.state.user.uid : false,
+      haveJoined: this.gameRoom.participants.find(user => {
+        if (this.$store.state.user !== null) {
+          return user.match(this.$store.state.user.uid)
+        }
+        return false
+      })
     }
-  },
-  beforeMount () {
-    this.title = this.gameRoom.title
-    this.room_status = this.gameRoom.roomStatus
-    this.participants = this.gameRoom.participants
-    this.activities = this.gameRoom.activities.entries
-    this.isOwner = this.gameRoom.owner === 'arif' // TODO change to current user
-    this.haveJoined = this.participants.find(user => user === 'arif@arif.com') // TODO get current user email
   },
   methods: {
     joinGame: function () {
@@ -66,7 +63,7 @@ export default {
     endGame: function () {
       if (confirm('User wants to end the game.')) {
         console.log('User is ending the game.')
-        this.$emit('playerEndGame', {})
+        this.$emit('playerEndGame', 'Done')
       } else {
         console.log('User do not want to end the game')
       }
@@ -83,7 +80,7 @@ export default {
       if (!this.haveJoined) {
         return
       }
-      const playerId = '1234' // TODO add current user
+      const playerId = this.$store.state.user
       if (!this.activities[index].participants.find(id => id === playerId)) {
         this.activities[index].participants.push(playerId)
       } else {

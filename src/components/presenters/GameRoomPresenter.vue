@@ -23,28 +23,27 @@ export default {
   },
   beforeCreate () {
     this.haveFetched = false
-    getGameRoom().then(data => {
+    getGameRoom(this.$route.params.roomId).then(data => {
       this.gameRoom.setTitle(data.title)
       this.gameRoom.setStatus(data.status)
       this.gameRoom.setParticipants(data.participants)
       this.gameRoom.setActivities(data.activities)
       this.gameRoom.setOwner(data.owner)
       this.haveFetched = true
-      console.log(this.gameRoom)
     }).catch(console.error)
   },
   methods: {
     playerJoinGame: function () {
-      joinGame('LpaNnbRc28U9ZX6XQZml', 'arif1236') // TODO change to more dynamically variable
+      joinGame(this.$route.params.roomId, this.$store.state.user.uid) // TODO change to more dynamically variable
     },
     playerLeaveGame: function () {
-      leaveGame('LpaNnbRc28U9ZX6XQZml', 'arif1236') // TODO change to more dynamically variable
+      leaveGame(this.$route.params.roomId, this.$store.state.user.uid) // TODO change to more dynamically variable
     },
     playerEndGame: function () {
-      endGame('LpaNnbRc28U9ZX6XQZml', this.gameRoom.roomStatus) // TODO change to more dynamically variable
+      endGame(this.$route.params.roomId, this.gameRoom.roomStatus) // TODO change to more dynamically variable
     },
     completeActivtiy: function (activities) {
-      completeTask('LpaNnbRc28U9ZX6XQZml', activities) // TODO change to more dynamically variable
+      completeTask(this.$route.params.roomId, activities) // TODO change to more dynamically variable
     }
   }
 }

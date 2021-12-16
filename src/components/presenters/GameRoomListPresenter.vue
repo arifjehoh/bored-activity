@@ -1,6 +1,7 @@
 <template>
   <div>
-    <GameRoomList />
+    <button type='button' v-if='this.$store.state.user' v-on:click='goToCreateGameRoom'>Create Game Room</button>
+    <GameRoomList @enterRoom='enterRoom'/>
   </div>
 </template>
 
@@ -10,6 +11,15 @@ export default {
   name: 'GameRoomListPresenter',
   components: {
     GameRoomList
+  },
+  methods: {
+    enterRoom: function (roomId) {
+      console.log(roomId)
+      this.$router.push({ name: 'game', params: { roomId: roomId } })
+    },
+    goToCreateGameRoom: function () {
+      this.$router.push({ name: 'create-game' })
+    }
   }
 }
 </script>

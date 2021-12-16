@@ -20,10 +20,9 @@
 </template>
 
 <script>
-import { createUserFromForm } from '../utils/FirebaseService.js'
 export default {
   name: 'CreateAccount',
-  emits: ['SignUp'],
+  emits: ['signUp'],
   data () {
     return {
       name: null,
@@ -33,7 +32,7 @@ export default {
   },
   methods: {
     SignUp: function () {
-      createUserFromForm(this.name, this.email, this.password).then((user) => console.log(user)).catch(console.error)
+      this.$emit('signUp', this.name, this.email, this.password)
     }
   }
 }
