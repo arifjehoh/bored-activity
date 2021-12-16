@@ -1,20 +1,28 @@
 <template>
-  <div id='content'>
-    <div id='header'>
-      <h1 id="pageTitle">Bored Bingo</h1>
-      <h2>Sign up</h2>
-    </div>
-
-    <div>
-        <h4 id="textBoxTitle">Full Name</h4>
-      <input type='text' placeholder="Enter name" v-model="name" id='InputBox' />
-      <h4 id="textBoxTitle">Email Adress</h4>
-      <input type='email' placeholder="Enter email" v-model="email" id='InputBox' />
-      <h4 id="textBoxTitle">Password</h4>
-      <input type='password' placeholder="Enter password" v-model="password" id='InputBox' />
-    </div>
-    <div id='SignInButton'>
-      <button id='btnSignUp' v-on:click='SignUp'>Sign up</button>
+  <div class='card text-center container-sm'>
+    <div class='card-body'>
+      <h1 class='card-title'>Sign up</h1>
+      <span class='card-title'>Full Name</span>
+      <input
+        type='text'
+        placeholder="Enter name"
+        v-model="name"
+        class='form-control'/>
+      <span class='card-title'>Email Address</span>
+      <input
+        type='email'
+        placeholder='Enter email'
+        v-model='email'
+        required
+        class='form-control'/>
+      <span class='card-title'>Password</span>
+      <input
+        type='password'
+        placeholder='Enter password'
+        v-model='password'
+        required
+        class='form-control'/>
+      <button type='button' class='btn btn-primary' v-on:click='SignUp'>Sign up</button>
     </div>
   </div>
 </template>
