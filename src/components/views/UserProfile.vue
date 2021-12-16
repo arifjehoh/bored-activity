@@ -32,7 +32,6 @@ export default {
     getUserEmail () {
       return this.$store.state.user.email
     }
-
   }
 }
 </script>
