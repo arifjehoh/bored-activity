@@ -98,14 +98,16 @@ export default {
 #btnSignin {
   font-size: 25px;
   padding: 5px;
-  margin-top: 50px;
+  margin-top: 25px;
   border-radius: 3px;
   width: 150px;
 }
 #btnResetPassword {
-  margin-top: 10px;
+  font-size: 25px;
+  padding: 5px;
+  margin-top: 25px;
   border-radius: 3px;
-  height: 40px;
+  width: 210px;
 }
 #InputBox {
   font-size: 25px;
