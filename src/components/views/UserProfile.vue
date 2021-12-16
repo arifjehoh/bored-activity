@@ -3,8 +3,8 @@
     <div>
       <h1>Profile</h1>
       <div>
-        <h4>{{ userDisplayName }}</h4>
-        <h5>{{ userEmail }}</h5>
+        <h4>{{ getUserName  }}</h4>
+        <h5>{{ getUserEmail }}</h5>
         <button id='btnLogOut' v-on:click='signOutUser'>Logout</button>
 
       </div>
@@ -24,6 +24,15 @@ export default {
     signOutUser: function () {
       this.$emit('signOut', {})
     }
+  },
+  computed: {
+    getUserName () {
+      return this.$store.state.user.displayName
+    },
+    getUserEmail () {
+      return this.$store.state.user.email
+    }
+
   }
 }
 </script>
