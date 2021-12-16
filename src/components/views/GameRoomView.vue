@@ -6,18 +6,18 @@
     <div id='content'>
       <div id ='test'>
       <div id='gameBoard'>
-        <div id= 'gameContent' v-for='(activity, index) in activities' v-bind:key='activity.key' v-on:click='completeActivtiy(index)'>
-          {{ activity.activity }}<br>{{activity.type}}<br>{{ activity.participants }}
+        <div id= 'gameContent' v-for='(activity, index) in activities' v-bind:key='activity.key' v-on:click='complete(index)'>
+          {{ activity.activity }}<br>{{activity.type}}<br>
           <div v-for='participant in activity.participants' v-bind:key='participant'>
-            {{ participant }}
+            {{ participant.displayName }}
           </div>
         </div>
       </div>
       </div>
       <div id='participants'>
         <h2>Participants:</h2>
-        <div id='players' v-for='participant in participants' v-bind:key='participant.name'>
-          {{ participant }}
+        <div id='players' v-for='participant in participants' v-bind:key='participant.uid'>
+          {{ participant.displayName }}
            <!--TODO {{ participant }}: {{ participant.name }}: {{ participant.score }}-->
         </div>
         <button type='button' v-if='!haveJoined && this.$store.state.user' v-on:click='joinGame'>Join game room</button>
@@ -41,6 +41,7 @@ export default {
     // Todo fetch player with this.gameRoom.participants
   },
   data () {
+    console.log(this.gameRoom)
     return {
       title: this.gameRoom.title,
       room_status: this.gameRoom.roomStatus,
@@ -49,7 +50,7 @@ export default {
       isOwner: this.$store.state.user !== null && this.$store.state.user.uid === this.gameRoom.owner ? this.gameRoom.owner === this.$store.state.user.uid : false,
       haveJoined: this.gameRoom.participants.find(user => {
         if (this.$store.state.user !== null) {
-          return user.match(this.$store.state.user.uid)
+          return user.uid.match(this.$store.state.user.uid)
         }
         return false
       })
@@ -76,18 +77,20 @@ export default {
         console.log('User do not want to leave.')
       }
     },
-    completeActivtiy: function (index) {
+    complete: function (index) {
       if (!this.haveJoined) {
         return
       }
-      const playerId = this.$store.state.user
-      if (!this.activities[index].participants.find(id => id === playerId)) {
-        this.activities[index].participants.push(playerId)
+      const player = this.$store.state.user
+      console.log(this.activities[index].participants)
+      if (!this.activities[index].participants.find(id => id.uid === player.uid)) {
+        this.activities[index].participants.push({ uid: player.uid, displayName: player.displayName })
       } else {
-        this.activities[index].participants.pop(playerId)
+        this.activities[index].participants.pop({ uid: player.uid, displayName: player.displayName })
       }
       const entries = this.activities
-      this.$emit('completeActivtiy', { entries })
+      console.log(entries)
+      this.$emit('completeActivtiy', entries)
     }
   }
 }

@@ -21,9 +21,9 @@ export default {
       haveFetched: false
     }
   },
-  beforeCreate () {
+  async beforeCreate () {
     this.haveFetched = false
-    getGameRoom(this.$route.params.roomId).then(data => {
+    await getGameRoom(this.$route.params.roomId).then(data => {
       this.gameRoom.setTitle(data.title)
       this.gameRoom.setStatus(data.status)
       this.gameRoom.setParticipants(data.participants)
@@ -34,10 +34,10 @@ export default {
   },
   methods: {
     playerJoinGame: function () {
-      joinGame(this.$route.params.roomId, this.$store.state.user.uid) // TODO change to more dynamically variable
+      joinGame(this.$route.params.roomId, this.$store.state.user) // TODO change to more dynamically variable
     },
     playerLeaveGame: function () {
-      leaveGame(this.$route.params.roomId, this.$store.state.user.uid) // TODO change to more dynamically variable
+      leaveGame(this.$route.params.roomId, this.$store.state.user) // TODO change to more dynamically variable
     },
     playerEndGame: function (roomStatus) {
       endGame(this.$route.params.roomId, roomStatus) // TODO change to more dynamically variable

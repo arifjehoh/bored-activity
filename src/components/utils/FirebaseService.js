@@ -33,9 +33,8 @@ const getGameRoom = async (roomId) => {
 
 const joinGame = async (roomId, player) => {
   try {
-    console.log(player)
     await updateDoc(doc(db, 'rooms', roomId), {
-      participants: arrayUnion(player)
+      participants: arrayUnion({ uid: player.uid, displayName: player.displayName })
     })
   } catch (error) {
     console.error(error)
@@ -45,7 +44,7 @@ const joinGame = async (roomId, player) => {
 const leaveGame = async (roomId, player) => {
   try {
     await updateDoc(doc(db, 'rooms', roomId), {
-      participants: arrayRemove(player)
+      participants: arrayRemove({ uid: player.uid, displayName: player.displayName })
     })
   } catch (error) {
     console.error(error)
@@ -68,6 +67,7 @@ const completeTask = async (roomId, activities) => {
       activities: activities
     })
   } catch (error) {
+    console.log('ERROR')
     console.error(error)
   }
 }
@@ -101,7 +101,6 @@ const signInFromForm = (email, password) => {
   return signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user
-      saveUserDetail(user.displayName, user.email, user.uid)
       return user
     })
     .catch((error) => {
@@ -119,7 +118,7 @@ const createUserFromForm = (name, email, password) => {
       updateProfile(userCredential.user, {
         displayName: name
       }).catch((console.error))
-      saveUserDetail(userCredential.user.displayName, userCredential.user.email, userCredential.user.uid)
+      saveUserDetail(name, email, userCredential.user.uid)
       return userCredential.user
     })
     .catch((error) => {
@@ -165,4 +164,21 @@ const saveUserDetail = async (displayName, email, uid) => {
 }
 
 // TODO FETCH USER DETAIL
-export { gameRoomToFirebase, signInFromForm, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask, createUserFromForm, requestResetPassword, signOutUser }
+const getParticipantDetail = async (uids) => {
+  const usersList = []
+  await uids.forEach((uid) => {
+    getUserDetail(uid).then((name) => {
+      usersList.push(name)
+    }).catch(console.error)
+  })
+  return usersList
+}
+
+// eslint-disable-next-line no-unused-vars
+const getUserDetail = async (uid) => {
+  return await getDocs(query(collection(db, 'users'), where('uid', '==', uid))).then((snapshot) => {
+    return snapshot.docs.at(0).data()
+  })
+}
+
+export { gameRoomToFirebase, signInFromForm, currentUser, getGameRoom, getGameList, joinGame, leaveGame, endGame, completeTask, createUserFromForm, requestResetPassword, signOutUser, getParticipantDetail }
