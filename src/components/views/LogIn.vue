@@ -1,37 +1,29 @@
 <template>
-  <div id="content">
-    <div id="header">
-      <h1 id="pageTitle">Bored Bingo</h1>
-      <h2>Sign in</h2>
-    </div>
-
-    <div>
-      <h4 id="textBoxTitle">Email Address</h4>
+  <div class='card text-center container-sm'>
+    <div class='card-body'>
+      <h1 class='card-title'>Sign in</h1>
+      <span class='card-title'>Email Address</span>
       <input
-        type="email"
-        placeholder="Enter email"
-        v-model="email"
+        type='email'
+        placeholder='Enter email'
+        v-model='email'
         required
-        id="InputBox"
+        class='form-control'
       />
-
-      <h4 id="textBoxTitle">Password</h4>
+      <span class='card-title'>Password</span>
       <input
-        type="password"
-        placeholder="Enter password"
-        v-model="password"
+        type='password'
+        placeholder='Enter password'
+        v-model='password'
         required
-        id="InputBox"
+        class='form-control'
       />
-    </div>
-    <div id='SignIn'>
-      <button id='btnSignin' v-on:click='SignIn' >Sign in</button>
-    </div>
-    <div id='SignUp'>
-      <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
-    </div>
-    <div id="resetPassword">
-      <button id="btnResetPassword" v-on:click="restUserPassword">Reset password</button>
+      <div>
+        <!-- TODO Could be in column and not row -->
+        <button type='button' class='btn btn-primary' v-on:click='SignIn' >Sign in</button>
+        <button type='button' class='btn btn-light' v-on:click='SignUp'>Sign up</button>
+        <button type='button' class='btn btn-light' v-on:click='restUserPassword'>Reset password</button>
+      </div>
     </div>
   </div>
 </template>
@@ -64,73 +56,5 @@ export default {
 </script>
 
 <style scoped>
-#content {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-#siteName {
-  text-align: left;
-  text-align: top;
-  position: relative;
-  bottom: 50px;
-}
-#rightMenu {
-  text-align: end;
-  text-align: top;
-  text-size-adjust: 50%;
-  position: relative;
-  bottom: 95px;
-}
-#midContent {
-  text-align: center;
-  position: relative;
-  bottom: 80px;
-}
-#profileButton {
-  position: relative;
-  top: 10px;
-}
-#loginButton {
-  position: relative;
-  top: 10px;
-}
-#btnSignin {
-  font-size: 25px;
-  padding: 5px;
-  margin-top: 50px;
-  border-radius: 3px;
-  width: 150px;
-}
-#btnResetPassword {
-  margin-top: 10px;
-  border-radius: 3px;
-  height: 40px;
-}
-#InputBox {
-  font-size: 25px;
-  width: 350px;
-  height: 50px;
-  border: none;
-  border: 3px solid #555;
-  border-radius: 3px;
-}
-#pageTitle {
-  margin-top: 50px;
-}
-#textBoxTitle {
-  margin-bottom: 0px;
-  padding-bottom: 0px;
-  font-size: 20px;
-}
-#ResetPasswordBtnText {
-  text-decoration-line: none;
-  text-decoration-color: black;
-}
-.routerLink {
-       text-decoration: none;
-       color: inherit;
-       font-size: 15px;
 
-}
 </style>
