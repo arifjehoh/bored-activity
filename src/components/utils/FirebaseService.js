@@ -77,7 +77,7 @@ const gameRoomToFirebase = async (room) => {
     const docRef = await addDoc(collection(db, 'rooms'), {
       title: room.title,
       status: room.roomStatus,
-      participants: [auth.currentUser.displayName],
+      participants: room.participants,
       activities: room.activities,
       owner: auth.currentUser.uid
     })
