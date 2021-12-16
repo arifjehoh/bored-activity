@@ -8,7 +8,8 @@
 <script>
 import GameRoom from '../views/GameRoomView.vue'
 import GameRoomModel from '../models/GameRoomModel.js'
-import { getGameRoom, joinGame, leaveGame, endGame, completeTask } from '../utils/FirebaseService.js'
+import { doc, onSnapshot } from 'firebase/firestore'
+import { db, joinGame, leaveGame, endGame, completeTask } from '../utils/FirebaseService.js'
 
 export default {
   name: 'GameRoomPresenter',
@@ -21,16 +22,24 @@ export default {
       haveFetched: false
     }
   },
-  async beforeCreate () {
-    this.haveFetched = false
-    await getGameRoom(this.$route.params.roomId).then(data => {
-      this.gameRoom.setTitle(data.title)
-      this.gameRoom.setStatus(data.status)
-      this.gameRoom.setParticipants(data.participants)
-      this.gameRoom.setActivities(data.activities)
-      this.gameRoom.setOwner(data.owner)
-      this.haveFetched = true
-    }).catch(console.error)
+  beforeCreate () {
+    try {
+      this.haveFetched = false
+      const q = doc(db, 'rooms', this.$route.params.roomId)
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        this.gameRoom.setTitle(snapshot.data().title)
+        this.gameRoom.setStatus(snapshot.data().status)
+        this.gameRoom.setParticipants(snapshot.data().participants)
+        this.gameRoom.setActivities(snapshot.data().activities)
+        this.gameRoom.setOwner(snapshot.data().owner)
+        this.haveFetched = true
+      },
+      (error) => console.log(error),
+      (data) => console.log(data))
+      return unsubscribe
+    } catch (error) {
+      console.log(error)
+    }
   },
   methods: {
     playerJoinGame: function () {

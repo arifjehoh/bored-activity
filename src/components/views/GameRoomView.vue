@@ -57,6 +57,9 @@ export default {
       })
     }
   },
+  mounted () {
+    console.log(this.gameRoom)
+  },
   methods: {
     joinGame: function () {
       console.log('User wants to join the game.')
