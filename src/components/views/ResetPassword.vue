@@ -37,23 +37,4 @@ export default {
 </script>
 
 <style scoped>
-#content {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-#midContent {
-  text-align: center;
-  position: relative;
-  bottom: 80px;
-}
-#btnReset {
-  font-size: 25px;
-  padding: 5px;
-  margin-top: 50px;
-  border-radius: 3px;
-}
-#place {
-  font-size: 20px;
-}
 </style>
