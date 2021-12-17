@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Bingo when you are bored</a>
+    <a class="navbar-brand btn-link" href="#" v-on:click='toHomepage'>Bingo when you are bored</a>
     <div class="">
       <ul class="navbar-nav">
         <!-- TODO LINKS SHOULD BE TO THE LEFT -->
@@ -20,7 +20,12 @@
 
 <script>
 export default {
-  name: 'NavigationPresenter'
+  name: 'NavigationPresenter',
+  methods: {
+    toHomepage: function () {
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 

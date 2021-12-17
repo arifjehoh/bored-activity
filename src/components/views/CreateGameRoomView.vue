@@ -28,27 +28,6 @@
       </form>
     </div>
   </div>
-    <!-- <div>
-    <label id ='label' for='typeActivites'>Type of activities:</label>
-    <div>
-    <select id='typeActivites' name='typeActivites' v-model='type'>
-      <option value=''>Everything</option>
-      <option value='education'>Education</option>
-      <option value='recreational'>Recreational</option>
-      <option value='social'>Social</option>
-      <option value='diy'>Diy</option>
-      <option value='charity'>Charity</option>
-      <option value='cooking'>Cooking</option>
-      <option value='relaxation'>Relaxation</option>
-      <option value='music'>Music</option>
-      <option value='busywork'>Busywork</option>
-    </select>
-    </div>
-    </div>
-    <div>
-    <button v-on:click='createGame'>Create game room</button>
-    </div>
-  </div> -->
 </template>
 
 <script>
