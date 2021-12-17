@@ -1,32 +1,77 @@
 <template>
-  <div id='container'>
-    <div id='header'>
-      <h1>{{ title }} - {{ room_status }}</h1>
+  <div class='container'>
+    <div class="row">
+      <h1 class='col-sm'>{{ title }} - {{ room_status }}</h1>
     </div>
-    <div id='content'>
-      <div id ='test'>
-      <div id='gameBoard'>
-        <div id= 'gameContent' v-for='(activity, index) in activities' v-bind:key='activity.key' v-on:click='complete(index)'>
-          {{ activity.activity }}<br>{{activity.type}}<br>
-          <div v-for='participant in activity.participants' v-bind:key='participant'>
-            {{ participant.displayName }}
+    <div class="row">
+      <div class="row card-group">
+        <div class="col" v-for='(activity, index) in activities.slice(0,5)' v-bind:key='activity.key' v-on:click='complete(index)'>
+          <div class="card col">
+            <p class="card-text">{{ activity.activity }}</p>
+            <p class="card-text">{{ activity.type }}</p>
+            <p v-for='participant in activity.participants' v-bind:key='participant'>
+              {{ participant.displayName }}
+            </p>
           </div>
         </div>
-      </div>
-      </div>
-      <div id='participants'>
-        <h2>Participants:</h2>
-        <div id='players' v-for='participant in participants' v-bind:key='participant.uid'>
-          {{ participant.displayName }}
-           <!--TODO {{ participant }}: {{ participant.name }}: {{ participant.score }}-->
+        <div class='row card-group'>
+        <div class="col" v-for='(activity, index) in activities.slice(5,10)' v-bind:key='activity.key' v-on:click='complete(index+5)'>
+          <div class="card col">
+            <p class="card-text">{{ activity.activity }}</p>
+            <p class="card-text">{{ activity.type }}</p>
+            <p v-for='participant in activity.participants' v-bind:key='participant'>
+              {{ participant.displayName }}
+            </p>
+          </div>
         </div>
-        <button type='button' v-if='!haveJoined && this.$store.state.user' v-on:click='joinGame'>Join game room</button>
-        <button type='button' v-if='isOwner' v-on:click='endGame'>End game room</button>
-        <button type='button' v-if='haveJoined' v-on:click='leaveGame'>Leave game room</button>
+        </div>
+        <div class='row card-group'>
+        <div class="col" v-for='(activity, index) in activities.slice(10,15)' v-bind:key='activity.key' v-on:click='complete(index+10)'>
+          <div class="card col">
+            <p class="card-text">{{ activity.activity }}</p>
+            <p class="card-text">{{ activity.type }}</p>
+            <p v-for='participant in activity.participants' v-bind:key='participant'>
+              {{ participant.displayName }}
+            </p>
+          </div>
+        </div>
+        </div>
+        <div class='row card-group'>
+        <div class="col" v-for='(activity, index) in activities.slice(15,20)' v-bind:key='activity.key' v-on:click='complete(index+15)'>
+          <div class="card col">
+            <p class="card-text">{{ activity.activity }}</p>
+            <p class="card-text">{{ activity.type }}</p>
+            <p v-for='participant in activity.participants' v-bind:key='participant'>
+              {{ participant.displayName }}
+            </p>
+          </div>
+        </div>
+        </div>
+        <div class='row card-group'>
+        <div class="col" v-for='(activity, index) in activities.slice(20,25)' v-bind:key='activity.key' v-on:click='complete(index+20)'>
+          <div class="card col">
+            <p class="card-text">{{ activity.activity }}</p>
+            <p class="card-text">{{ activity.type }}</p>
+            <p v-for='participant in activity.participants' v-bind:key='participant'>
+              {{ participant.displayName }}
+            </p>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="col card container-sm">
+        <h2>Participants:</h2>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" v-for='participant in participants' v-bind:key='participant.uid'>{{ participant.displayName }}</li>
+        </ul>
+        <div class="btn-group-vertical">
+          <button type='button' class="btn btn-primary" v-if='!haveJoined && this.$store.state.user' v-on:click='joinGame'>Join game room</button>
+          <button type='button' class="btn btn-danger" v-if='isOwner' v-on:click='endGame'>End game room</button>
+          <button type='button' class="btn btn-primary" v-if='haveJoined' v-on:click='leaveGame'>Leave game room</button>
+        </div>
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -98,72 +143,4 @@ export default {
 </script>
 
 <style scoped>
-#container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  position: relative;
-}
-
-#content {
-  display: flex;
-  flex-direction: row;
-  flex: 40%;
-}
-
-#participants {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  border: groove;
-  text-size-adjust: 20%;
-  width: 25%;
-  height: flex;
-}
-
-#gameBoard {
-  display: grid;
-  grid-template-columns:auto auto auto auto auto;
-  grid-gap: 15px;
-  width: 60%;
-  padding-left: 27%;
-  padding-top: 0%;
-  padding-bottom: 0%;
-  font-size: 105%;
-}
-#gameContent{
-  border: groove;
-  align-items: center;
-  size: 60px;
-}
-#test{
-  align-items: center;
-  align-content: center;
-}
-#players{
-  border: groove;
-  font-size: large;
-  margin: 5px;
-}
-button{
-  margin: 4px;
-  text-align: center;
-  align-self: center;
-  width: 98%;
-  height: 5%;
-  font-size: large;
-  border-radius: 12px;
-
-}
-button:active {
-  background-color: #d8d8d8;
-  box-shadow: 0 2px #666;
-  transform: translateY(0.5px);
-}
-#test{
-  align-content: center;
-  align-items: center;
-  text-align: center;
-}
-
 </style>
