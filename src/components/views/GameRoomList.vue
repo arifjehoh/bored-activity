@@ -3,6 +3,7 @@
     <div class='card'>
       <div class='card-header'>
         <h1>List of open games:</h1>
+        <button type="button" class="btn btn-secondary" v-if='this.$store.state.user' v-on:click='goToCreateGameRoom'>Create Game Room</button>
       </div>
       <table class='table'>
         <thead>
@@ -31,7 +32,7 @@ import { getGameList } from '../utils/FirebaseService.js'
 
 export default {
   name: 'GameRoomList',
-  emits: ['enterRoom'],
+  emits: ['enterRoom', 'createGameRoom'],
   data () {
     return {
       rooms: []
@@ -48,6 +49,9 @@ export default {
     enterGameRoom: function (index) {
       console.log(this.rooms[index].id)
       this.$emit('enterRoom', this.rooms[index].id)
+    },
+    goToCreateGameRoom: function () {
+      this.$emit('createGameRoom')
     }
   }
 }
