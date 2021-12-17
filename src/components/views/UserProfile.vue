@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <div>
-      <h1>Profile</h1>
+  <div class="container">
+    <div class="card">
+      <h1 class="card-header">Profile</h1>
       <div>
-        <h4>{{ getUserName  }}</h4>
-        <h5>{{ getUserEmail }}</h5>
-        <button id='btnLogOut' v-on:click='signOutUser'>Logout</button>
-
+        <h2>{{ getUserName  }}</h2>
+        <h3>{{ getUserEmail }}</h3>
+        <button type="button" class="btn btn-danger"  v-on:click='signOutUser'>Logout</button>
       </div>
     </div>
   </div>
