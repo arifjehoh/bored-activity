@@ -71,13 +71,13 @@
           <button type='button' class="btn btn-primary" v-if='!haveJoined && this.$store.state.user' v-on:click='joinGame'>Join game room</button>
           <button type='button' class="btn btn-danger" v-if='isOwner' v-on:click='endGame'>End game room</button>
           <button type='button' class="btn btn-primary" v-if='haveJoined' v-on:click='leaveGame'>Leave game room</button>
+         <router-link to='/gif-test' id = 'BINGO' type='button' class="btn btn"  v-if='haveJoined' v-on:click='test'>BINGO</router-link>
         </div>
       </div>
       </div>
 </template>
 
 <script>
-
 export default {
   name: 'GameRoom',
   props: {
@@ -85,7 +85,6 @@ export default {
   },
   emits: ['playerJoinGame', 'playerLeaveGame', 'playerEndGame', 'completeActivtiy'],
   setup () {
-    // Todo fetch player with this.gameRoom.participants
   },
   data () {
     console.log(this.gameRoom)
@@ -139,6 +138,9 @@ export default {
       const entries = this.activities
       console.log(entries)
       this.$emit('completeActivtiy', entries)
+    },
+    test: function () {
+      console.log('test')
     }
   }
 }
@@ -179,5 +181,9 @@ export default {
       }
       #warpper{
         overflow: auto;
+      }
+      #BINGO{
+        background-color: rgb(0, 0, 0);
+        color: gold;
       }
 </style>
