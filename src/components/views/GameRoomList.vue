@@ -1,9 +1,9 @@
 <template>
-  <div class='container-sm'>
+  <div id='main' class='container-sm'>
     <div class='card'>
-      <div class='card-header'>
-        <h1>List of open games:</h1>
-        <button type="button" class="btn btn-secondary" v-if='this.$store.state.user' v-on:click='goToCreateGameRoom'>Create Game Room</button>
+      <div class='card-header bg-primary'>
+        <h1 id = 'headerText'>List of open games:</h1>
+        <button id='textBtn' type="button" class="btn btn-light" v-if='this.$store.state.user' v-on:click='goToCreateGameRoom'>Create Game Room</button>
       </div>
       <table class='table'>
         <thead>
@@ -19,7 +19,7 @@
             <th scope='row'>{{ index + 1 }}</th>
             <td>{{ room.content.title }}</td>
             <td>{{ room.content.status }}</td>
-            <td><button type="button" class="btn btn-link" v-on:click='enterGameRoom(index)'>Enter</button></td>
+            <td><button id='enterBtn' type="button" class="btn btn-link" v-on:click='enterGameRoom(index)'>Enter</button></td>
           </tr>
         </tbody>
       </table>
@@ -57,4 +57,19 @@ export default {
 }
 </script>
 <style scoped>
+#main{
+   margin-top: 80px;
+  background-color: _;
+}
+#enterBtn{
+  color: black;
+  text-decoration-color: rgba(0,0,0.9);
+  text-decoration-line: none;
+  text-decoration-style: solid;
+}#textBtn{
+  color: rgb(0, 123, 255);
+}#headerText{
+  color: white;
+  background-color: rgb(0, 123, 255);
+}
 </style>

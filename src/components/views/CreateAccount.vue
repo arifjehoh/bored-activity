@@ -1,7 +1,7 @@
 <template>
-  <div class='card text-center container-sm'>
+  <div id = "main" class='card text-center container-sm'>
     <div class='card-body'>
-      <h1 class='card-title'>Sign up</h1>
+      <h1 id='haederText' class='card-title bg-primary'>Sign up</h1>
       <span class='card-title'>Full Name</span>
       <input
         type='text'
@@ -22,7 +22,9 @@
         v-model='password'
         required
         class='form-control'/>
+        <div id='btnDiv' class='btn-group-vertical'>
       <button type='button' class='btn btn-primary' v-on:click='SignUp'>Sign up</button>
+        </div>
     </div>
   </div>
 </template>
@@ -47,4 +49,19 @@ export default {
 </script>
 
 <style scoped>
+#main {
+  height: 600px;
+  max-width: 540px;
+  margin-top: 80px;
+  background-color: _;
+  }
+#btnDiv{
+  margin-top: 30px;
+}
+.button.btn{
+  min-width: 141.21;
+}
+#haederText{
+  color: white;
+}
 </style>

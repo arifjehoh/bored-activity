@@ -1,7 +1,7 @@
 <template>
-  <div class='card text-center container-sm'>
-    <div class='card-body'>
-      <h1 class='card-title'>Sign in</h1>
+  <div  id = 'main' class='card text-center container-sm'>
+    <div id='Content' class='card-body'>
+      <h1  id='haederText' class='card-title bg-primary'>Sign in</h1>
       <span class='card-title'>Email Address</span>
       <input
         type='email'
@@ -18,7 +18,7 @@
         required
         class='form-control'
       />
-      <div class='btn-group-vertical'>
+      <div id='btnDiv' class='btn-group-vertical'>
         <button type='button' class='btn btn-primary' v-on:click='SignIn' >Sign in</button>
         <button type='button' class='btn btn-light' v-on:click='SignUp'>Sign up</button>
         <button type='button' class='btn btn-light' v-on:click='restUserPassword'>Reset password</button>
@@ -55,5 +55,16 @@ export default {
 </script>
 
 <style scoped>
-
+#main {
+  height: 600px;
+  max-width: 540px;
+  margin-top: 80px;
+  background-color: _;
+  }
+#btnDiv{
+  margin-top: 30px;
+}
+#haederText{
+  color: white;
+}
 </style>
