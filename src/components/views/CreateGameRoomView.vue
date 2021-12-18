@@ -23,9 +23,10 @@
           </select>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-primary" v-on:click='createGame'>Create game room</button>
+          <button type="button" class="btn btn-primary" v-on:click='createGame'>Create game room</button>
         </div>
       </form>
+      <p>You will be redirected when the game is completed. Please wait for a bit.</p>
     </div>
   </div>
 </template>
