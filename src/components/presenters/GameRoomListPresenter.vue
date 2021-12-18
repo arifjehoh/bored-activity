@@ -1,7 +1,7 @@
 <template>
   <div>
     <button type='button' v-if='this.$store.state.user' v-on:click='goToCreateGameRoom'>Create Game Room</button>
-    <GameRoomList :rooms='rooms' @enterRoom='enterRoom'/>
+    <GameRoomList :rooms='rooms' @enterRoom='enterRoom' @createGameRoom='goToCreateGameRoom'/>
   </div>
 </template>
 

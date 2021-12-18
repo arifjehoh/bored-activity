@@ -6,6 +6,7 @@ import LogInPresenter from '../presenters/LogInPresenter.vue'
 import CreateAccountPresenter from '../presenters/CreateAccountPresenter.vue'
 import ResetPasswordPresenter from '../presenters/ResetPasswordPresenter.vue'
 import CreateGameRoomPresenter from '../presenters/CreateGameRoomPresenter.vue'
+import GifTest from '../views/GifTest.vue'
 
 const routes = [
   {
@@ -47,6 +48,11 @@ const routes = [
     name: 'reset-password',
     path: '/reset-password',
     component: ResetPasswordPresenter
+  },
+  {
+    name: 'gif-test',
+    path: '/gif-test',
+    component: GifTest
   }
 ]
 

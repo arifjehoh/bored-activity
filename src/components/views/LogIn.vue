@@ -1,37 +1,42 @@
 <template>
-  <div id="content">
-    <div id="header">
-      <h1 id="pageTitle">Bored Bingo</h1>
-      <h2>Sign in</h2>
-    </div>
-
-    <div>
-      <h4 id="textBoxTitle">Email Address</h4>
-      <input
-        type="email"
-        placeholder="Enter email"
-        v-model="email"
-        required
-        id="InputBox"
-      />
-
-      <h4 id="textBoxTitle">Password</h4>
-      <input
-        type="password"
-        placeholder="Enter password"
-        v-model="password"
-        required
-        id="InputBox"
-      />
-    </div>
-    <div id='SignIn'>
-      <button id='btnSignin' v-on:click='SignIn' >Sign in</button>
-    </div>
-    <div id='SignUp'>
-      <button id='btnSignin' v-on:click='SignUp'>Sign up</button>
-    </div>
-    <div id="resetPassword">
-      <button id="btnResetPassword" v-on:click="restUserPassword">Reset password</button>
+  <div class='container'>
+    <div class="card text-center content">
+      <div>
+        <h1 class='card-header bg-primary text-white'>Sign in</h1>
+      </div>
+      <form class="form-content">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input
+            type='email'
+            placeholder='Enter email'
+            v-model='email'
+            required
+            class='form-control'
+          />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input
+            type='password'
+            placeholder='Enter password'
+            v-model='password'
+            required
+            class='form-control'
+          />
+        </div>
+        <div class="btn-group-vertical">
+          <div class="form-group w-100">
+            <button type='button' class='btn btn-primary btn-block' v-on:click='SignIn' >Sign in</button>
+          </div>
+          <div class="form-group w-100">
+            <button type='button' class='btn btn-light btn-block' v-on:click='SignUp'>Sign up</button>
+          </div>
+          <div class="form-group w-100">
+            <button type='button' class='btn btn-light btn-block' v-on:click='restUserPassword'>Reset password</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -64,73 +69,18 @@ export default {
 </script>
 
 <style scoped>
-#content {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+.content {
+  height: 600px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
 }
-#siteName {
-  text-align: left;
-  text-align: top;
-  position: relative;
-  bottom: 50px;
-}
-#rightMenu {
-  text-align: end;
-  text-align: top;
-  text-size-adjust: 50%;
-  position: relative;
-  bottom: 95px;
-}
-#midContent {
-  text-align: center;
-  position: relative;
-  bottom: 80px;
-}
-#profileButton {
-  position: relative;
-  top: 10px;
-}
-#loginButton {
-  position: relative;
-  top: 10px;
-}
-#btnSignin {
-  font-size: 25px;
-  padding: 5px;
-  margin-top: 50px;
-  border-radius: 3px;
-  width: 150px;
-}
-#btnResetPassword {
-  margin-top: 10px;
-  border-radius: 3px;
-  height: 40px;
-}
-#InputBox {
-  font-size: 25px;
-  width: 350px;
-  height: 50px;
-  border: none;
-  border: 3px solid #555;
-  border-radius: 3px;
-}
-#pageTitle {
-  margin-top: 50px;
-}
-#textBoxTitle {
-  margin-bottom: 0px;
-  padding-bottom: 0px;
-  font-size: 20px;
-}
-#ResetPasswordBtnText {
-  text-decoration-line: none;
-  text-decoration-color: black;
-}
-.routerLink {
-       text-decoration: none;
-       color: inherit;
-       font-size: 15px;
 
+.form-content {
+  margin: 16px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 </style>

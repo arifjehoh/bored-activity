@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <div>
-      <h1>Profile</h1>
+  <div id = 'main' class="container">
+    <div id = 'main' class="card">
+      <h1 id='maincontent' class="card-header bg-primary">Profile</h1>
       <div>
-        <h4>{{ getUserName  }}</h4>
-        <h5>{{ getUserEmail }}</h5>
-        <button id='btnLogOut' v-on:click='signOutUser'>Logout</button>
-
+        <h3>Name: {{ getUserName  }}</h3>
+        <h3>Email: {{ getUserEmail }}</h3>
+        <button id='btnDiv' type="button" class="btn btn-danger"  v-on:click='signOutUser'>Logout</button>
       </div>
     </div>
   </div>
@@ -35,3 +34,20 @@ export default {
   }
 }
 </script>
+<style scoped>
+#main{
+  height: 600px;
+  max-width: 540px;
+  background-color: _;
+  align-content:center ;
+}#maincontent{
+  margin-bottom: 80px;
+  color: white;
+}
+#btnDiv{
+  margin-top: 30px;
+}
+#haederText{
+  color: white;
+}
+</style>

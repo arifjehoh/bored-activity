@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Game Room Presenter</h1>
     <GameRoom v-if='haveFetched' :gameRoom='gameRoom' @playerJoinGame='playerJoinGame' @playerLeaveGame='playerLeaveGame' @playerEndGame='playerEndGame' @completeActivtiy='completeActivtiy'/>
   </div>
 </template>
