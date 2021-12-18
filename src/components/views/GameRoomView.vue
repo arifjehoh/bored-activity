@@ -81,6 +81,9 @@
           <div class="form-group w-100">
             <button type='button' class="btn btn-primary btn-block" v-if='haveJoined' v-on:click='leaveGame'>Leave game room</button>
           </div>
+          <div class="form-group w-100">
+            <router-link to='/gif-test' id='BINGO' type='button' class="btn btn-block"  v-if='haveJoined' v-on:click='test'>BINGO</router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -89,7 +92,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'GameRoom',
   props: {
@@ -97,7 +99,6 @@ export default {
   },
   emits: ['playerJoinGame', 'playerLeaveGame', 'playerEndGame', 'completeActivtiy'],
   setup () {
-    // Todo fetch player with this.gameRoom.participants
   },
   data () {
     console.log(this.gameRoom)
@@ -151,47 +152,15 @@ export default {
       const entries = this.activities
       console.log(entries)
       this.$emit('completeActivtiy', entries)
+    },
+    test: function () {
+      console.log('test')
     }
   }
 }
 </script>
 
 <style scoped>
-/* #main {
-  margin-left: 50px;
-  float:left;
-  margin-top:80px;
-  height: auto;
-  background-color: _;
-  border: 1px solid rgba(0,0,0,.125);
-  position: relative;  }
-  #mainContent{
-    border: 1px solid rgba(0,0,0,.125);
-  }
-  .row{
-    margin: 15px;
-    align-content: center;
-    align-items: center;
-  }
-  .col{
-    min-height:120px;
-    align-content: center;
-    align-items: center;
-    padding: 8;
-      }
-      .card-text{
-      }
-      #activityText{
-        min-height: 90px;
-      }.row1{
-        margin-top:450px;
-        max-width: 350px;
-        margin-right: 80px;
-        float:right;
-      }
-      #warpper{
-        overflow: auto;
-      } */
 .card-size {
   max-width: 120px;
   min-height: 200px;
@@ -200,5 +169,10 @@ export default {
 .col-space {
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+#BINGO{
+  background-color: rgb(0, 0, 0);
+  color: gold;
 }
 </style>
