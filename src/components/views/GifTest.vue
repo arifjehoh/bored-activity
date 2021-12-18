@@ -13,7 +13,7 @@ export default {}
 .content {
   margin-left: auto;
   margin-right: auto;
-  height: 640px;
-  width: 640px;
+  height: 400px;
+  width: auto;
 }
 </style>
