@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavigationPresenter />
-    <router-view />
+    <router-view class="main-content"/>
   </div>
 </template>
 <script>
@@ -17,4 +17,7 @@ export default {
 </script>
 
 <style>
+.main-content {
+  padding: 80px;
+}
 </style>

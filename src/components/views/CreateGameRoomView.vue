@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <div class="card">
-      <h1 class="card-header">Create Game Room</h1>
-      <form>
+    <div class="card content">
+      <h1 class="card-header bg-primary text-white">Create Game Room</h1>
+      <form class="form-content">
         <div class="form-group">
           <label for='roomName'>Game room name:</label>
           <input class='form-control' type='text' id='roomName' name='roomName' v-model='roomName' placeholder="Type of activities:" aria-describedby="emailHelp"/>
@@ -50,4 +50,18 @@ export default {
 </script>
 
 <style scoped>
+.content {
+  height: 600px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-content {
+  margin: 16px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
 </style>

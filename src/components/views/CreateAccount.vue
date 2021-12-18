@@ -1,28 +1,45 @@
 <template>
-  <div class='card text-center container-sm'>
-    <div class='card-body'>
-      <h1 class='card-title'>Sign up</h1>
-      <span class='card-title'>Full Name</span>
-      <input
-        type='text'
-        placeholder="Enter name"
-        v-model="name"
-        class='form-control'/>
-      <span class='card-title'>Email Address</span>
-      <input
-        type='email'
-        placeholder='Enter email'
-        v-model='email'
-        required
-        class='form-control'/>
-      <span class='card-title'>Password</span>
-      <input
-        type='password'
-        placeholder='Enter password'
-        v-model='password'
-        required
-        class='form-control'/>
-      <button type='button' class='btn btn-primary' v-on:click='SignUp'>Sign up</button>
+  <div class='container'>
+    <div class="card text-center content">
+      <div>
+        <h1 class='card-header bg-primary text-white'>Sign up</h1>
+      </div>
+      <form class="form-content">
+        <div class="form-group">
+          <label>Full name</label>
+          <input
+            type='text'
+            placeholder="Enter name"
+            v-model="name"
+            class='form-control'
+          />
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input
+            type='email'
+            placeholder='Enter email'
+            v-model='email'
+            required
+            class='form-control'
+          />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input
+            type='password'
+            placeholder='Enter password'
+            v-model='password'
+            required
+            class='form-control'
+          />
+        </div>
+        <div class="btn-group-vertical">
+          <div class="form-group w-100">
+            <button type='button' class='btn btn-primary btn-block' v-on:click='SignUp'>Sign up</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -47,4 +64,18 @@ export default {
 </script>
 
 <style scoped>
+.content {
+  height: 600px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-content {
+  margin: 16px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
 </style>
