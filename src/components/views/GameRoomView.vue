@@ -82,7 +82,7 @@
             <button type='button' class="btn btn-primary btn-block" v-if='haveJoined' v-on:click='leaveGame'>Leave game room</button>
           </div>
           <div class="form-group w-100">
-            <router-link to='/gif-test' id='BINGO' type='button' class="btn btn"  v-if='haveJoined' v-on:click='test'>BINGO</router-link>
+            <router-link to='/gif-test' id='BINGO' type='button' class="btn btn-block"  v-if='haveJoined' v-on:click='test'>BINGO</router-link>
           </div>
         </div>
       </div>
