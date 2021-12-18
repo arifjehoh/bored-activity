@@ -58,11 +58,9 @@ export default {
 </script>
 <style scoped>
 #main{
-   margin-top: 80px;
   background-color: _;
 }
 #enterBtn{
-  color: black;
   text-decoration-color: rgba(0,0,0.9);
   text-decoration-line: none;
   text-decoration-style: solid;

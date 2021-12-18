@@ -1,30 +1,45 @@
 <template>
-  <div id = "main" class='card text-center container-sm'>
-    <div class='card-body'>
-      <h1 id='haederText' class='card-title bg-primary'>Sign up</h1>
-      <span class='card-title'>Full Name</span>
-      <input
-        type='text'
-        placeholder="Enter name"
-        v-model="name"
-        class='form-control'/>
-      <span class='card-title'>Email Address</span>
-      <input
-        type='email'
-        placeholder='Enter email'
-        v-model='email'
-        required
-        class='form-control'/>
-      <span class='card-title'>Password</span>
-      <input
-        type='password'
-        placeholder='Enter password'
-        v-model='password'
-        required
-        class='form-control'/>
-        <div id='btnDiv' class='btn-group-vertical'>
-      <button type='button' class='btn btn-primary' v-on:click='SignUp'>Sign up</button>
+  <div class='container'>
+    <div class="card text-center content">
+      <div>
+        <h1 class='card-header bg-primary text-white'>Sign up</h1>
+      </div>
+      <form class="form-content">
+        <div class="form-group">
+          <label>Full name</label>
+          <input
+            type='text'
+            placeholder="Enter name"
+            v-model="name"
+            class='form-control'
+          />
         </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input
+            type='email'
+            placeholder='Enter email'
+            v-model='email'
+            required
+            class='form-control'
+          />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input
+            type='password'
+            placeholder='Enter password'
+            v-model='password'
+            required
+            class='form-control'
+          />
+        </div>
+        <div class="btn-group-vertical">
+          <div class="form-group w-100">
+            <button type='button' class='btn btn-primary btn-block' v-on:click='SignUp'>Sign up</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -49,19 +64,18 @@ export default {
 </script>
 
 <style scoped>
-#main {
+.content {
   height: 600px;
   max-width: 540px;
-  margin-top: 80px;
-  background-color: _;
-  }
-#btnDiv{
-  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.button.btn{
-  min-width: 141.21;
-}
-#haederText{
-  color: white;
+
+.form-content {
+  margin: 16px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 </style>
