@@ -1,16 +1,26 @@
 <template>
-  <div id='main' class='card text-center container-sm '>
-    <div class='card-body'>
-      <h1 id='maincontent' class='card-title bg-primary'>Reset password</h1>
-      <span class='card-title'>Email Address</span>
-      <input
-        type='email'
-        placeholder='Enter email'
-        v-model='email'
-        required
-        class='form-control'
-      />
-      <button id='btnDiv' type='button' class='btn btn-primary' v-on:click='ResetPassword'>Reset Password</button>
+  <div class='container'>
+    <div class="card text-center content">
+      <div>
+        <h1 class='card-header bg-primary text-white'>Reset password</h1>
+      </div>
+      <form class="form-content">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input
+            type='email'
+            placeholder='Enter email'
+            v-model='email'
+            required
+            class='form-control'
+          />
+        </div>
+        <div class="btn-group-vertical">
+          <div class="form-group w-100">
+            <button type='button' class='btn btn-primary' v-on:click='ResetPassword'>Reset Password</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -37,19 +47,18 @@ export default {
 </script>
 
 <style scoped>
-#main{
+.content {
   height: 600px;
   max-width: 540px;
-  margin-top: 80px;
-  background-color: _;
-}#maincontent{
-  margin-bottom: 80px;
-  color: white;
+  margin-left: auto;
+  margin-right: auto;
 }
-#btnDiv{
-  margin-top: 30px;
-}
-#haederText{
-  color: white;
+
+.form-content {
+  margin: 16px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 </style>

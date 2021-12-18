@@ -38,7 +38,6 @@ export default {
 #main{
   height: 600px;
   max-width: 540px;
-  margin-top: 80px;
   background-color: _;
   align-content:center ;
 }#maincontent{

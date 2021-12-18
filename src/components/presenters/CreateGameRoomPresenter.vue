@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>CreateGameRoomPresenter</h1>
     <CreateGameRoomView @createGameRoom="createGameRoom" />
   </div>
 </template>
