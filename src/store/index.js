@@ -2,12 +2,17 @@ import { createStore } from 'vuex'
 
 const store = createStore({
   state: {
-    user: null
+    user: null,
+    game: null
   },
   mutations: {
     setUser (state, payload) {
       state.user = payload
       console.log('User state changed: ', state.user)
+    },
+    setGame (state, payload) {
+      state.game = payload
+      console.log('User state changed: ', state.game)
     }
   }
   // actions: {

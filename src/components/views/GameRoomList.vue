@@ -28,23 +28,23 @@
 </template>
 
 <script>
-import { getGameList } from '../utils/FirebaseService.js'
 
 export default {
   name: 'GameRoomList',
   emits: ['enterRoom', 'createGameRoom'],
-  data () {
-    return {
-      rooms: []
-    }
-  },
-  beforeCreate () {
-    getGameList()
-      .then((data) => {
-        this.rooms = data
-      })
-      .catch(console.error)
-  },
+  props: ['rooms'],
+  // data () {
+  //   return {
+  //     rooms: []
+  //   }
+  // },
+  // beforeCreate () {
+  //   getGameList()
+  //     .then((data) => {
+  //       this.rooms = data
+  //     })
+  //     .catch(console.error)
+  // },
   methods: {
     enterGameRoom: function (index) {
       console.log(this.rooms[index].id)
