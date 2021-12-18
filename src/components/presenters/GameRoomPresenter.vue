@@ -17,25 +17,27 @@ export default {
   },
   data () {
     return {
-      gameRoom: new GameRoomModel(),
-      haveFetched: false
+      gameRoom: new GameRoomModel()
     }
   },
   beforeCreate () {
     try {
       this.haveFetched = false
       const q = doc(db, 'rooms', this.$route.params.roomId)
-      const unsubscribe = onSnapshot(q, (snapshot) => {
-        this.gameRoom.setTitle(snapshot.data().title)
-        this.gameRoom.setStatus(snapshot.data().status)
-        this.gameRoom.setParticipants(snapshot.data().participants)
-        this.gameRoom.setActivities(snapshot.data().activities)
-        this.gameRoom.setOwner(snapshot.data().owner)
+      const gameRoom = new GameRoomModel()
+      onSnapshot(q, (snapshot) => {
+        console.log(snapshot)
+        gameRoom.setTitle(snapshot.data().title)
+        gameRoom.setStatus(snapshot.data().status)
+        gameRoom.setParticipants(snapshot.data().participants)
+        gameRoom.setActivities(snapshot.data().activities)
+        gameRoom.setOwner(snapshot.data().owner)
         this.haveFetched = true
+        this.$store.commit('setGame', gameRoom)
+        this.gameRoom = this.$store.state.game
+        this.$forceUpdate()
       },
-      (error) => console.log(error),
-      (data) => console.log(data))
-      return unsubscribe
+      (error) => console.log(error))
     } catch (error) {
       console.log(error)
     }
@@ -43,6 +45,8 @@ export default {
   methods: {
     playerJoinGame: function () {
       joinGame(this.$route.params.roomId, { uid: this.$store.state.user.uid, displayName: this.$store.state.user.displayName }) // TODO change to more dynamically variable
+      console.log(this.$route.params.roomId)
+      this.$router.push({ name: 'game', params: { roomId: this.$route.params.roomId } })
     },
     playerLeaveGame: function () {
       leaveGame(this.$route.params.roomId, { uid: this.$store.state.user.uid, displayName: this.$store.state.user.displayName }) // TODO change to more dynamically variable

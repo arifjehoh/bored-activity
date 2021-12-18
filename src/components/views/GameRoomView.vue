@@ -101,7 +101,6 @@ export default {
   setup () {
   },
   data () {
-    console.log(this.gameRoom)
     return {
       title: this.gameRoom.title,
       room_status: this.gameRoom.roomStatus,
@@ -117,8 +116,8 @@ export default {
       })
     }
   },
-  mounted () {
-    console.log(this.gameRoom)
+  beforeUpdate () {
+    console.log(this.$store.state.game)
   },
   methods: {
     joinGame: function () {
@@ -147,6 +146,7 @@ export default {
       }
       const player = this.$store.state.user
       console.log(this.activities[index].participants)
+      this.activities[index].participants = this.$store.state.game.activities[index].participants
       if (!this.activities[index].participants.find(id => id.uid === player.uid)) {
         this.activities[index].participants.push({ uid: player.uid, displayName: player.displayName })
       } else {
@@ -154,6 +154,7 @@ export default {
       }
       const entries = this.activities
       console.log(entries)
+      // TODO PROBLEM WITH HAVING TWO DIFFERENT STATE
       this.$emit('completeActivtiy', entries)
     },
     test: function () {
