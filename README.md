@@ -4,6 +4,22 @@
 **Group members**:   
 Abdullah Trabulsiah ([abdullahtr249](https://github.com/abdullahtr249)), Arif Jehda-Oh ([arifjehoh](https://github.com/arifjehoh)), Murtadha Hussien Ali Al-Obaidi ([mhaao](https://github.com/mhaao)), Nils Falck ([nilfal](https://github.com/Nilfal))  
 
+## How to setup
+0. Clone the repository to your local machine.
+1. Run the installation of the project.
+```bash
+npm run install
+```
+2. Run the build.
+```bash
+npm run build
+```
+3. Run the server.
+```bash
+npm run serve
+```
+4. Start using the project
+
 ## What is this project
 The project can be found here [bored-activity](https://bored-activity.herokuapp.com/) which is deployed on Heroku.  
 Our project is a bingo game it is called bored/activity. You can play alone or with friends. It is built on random activity. Whoever completes the activity first gets Bingo you are the winner.  
